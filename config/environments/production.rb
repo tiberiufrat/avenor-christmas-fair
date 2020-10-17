@@ -4,6 +4,8 @@ Rails.application.configure do
   config.action_controller.asset_host = ENV['CLOUDFRONT_URL']
   config.cache_store = :redis_cache_store, { url: ENV['REDIS_CACHE_URL'] }
 
+  config.serve_static_assets = true
+
   config.middleware.use(
     Rack::Ratelimit, name: 'API',
     conditions: ->(env) { ActionDispatch::Request.new(env).format.json? },
