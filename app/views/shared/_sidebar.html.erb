@@ -1,25 +1,37 @@
 <div class="main-sidebar sidebar-style-2">
   <aside id="sidebar-wrapper">
     <div class="sidebar-brand">
-      <%= link_to 'Stisla', root_path  %>
+      <%= link_to 'Avenor Christmas Fair', root_path  %>
     </div>
     <div class="sidebar-brand sidebar-brand-sm">
-      <%= link_to 'St', root_path %>
+      <%= link_to 'ACF', root_path %>
     </div>
     <ul class="sidebar-menu" data-controller="sidebar">
       <li class="<%= active_nav_item('home', 'index') %>">
         <%= link_to root_path, class: "nav-link" do %>
-          <i class="fas fa-fire"></i> <span>Dashboard</span>
+          <i class="fab fa-fire" style="font-size: 16px;"></i> <span>Dashboard</span>
+        <% end %>
+      </li>
+
+      <li class="<%= active_nav_item('students', 'index') %>">
+        <%= link_to students_path, class: "nav-link" do %>
+          <i class="fas fa-user-graduate"></i> <span>Students</span>
+        <% end %>
+      </li>
+
+      <li class="<%= active_nav_item('grades', 'index') %>">
+        <%= link_to grades_path, class: "nav-link" do %>
+          <i class="fab fa-users-class"></i> <span>Grades</span>
         <% end %>
       </li>
 
       <li class="menu-header">Controllers</li>
       <%= render 'shared/sidebar_dropdown', title: 'Resources', icon: 'fas fa-file-alt' do %>
-      <!--
-        <li class="<#= active_nav_item('customers', crud_actions) #>">
-          <#= link_to 'Customers', customers_path, class: 'nav-link' #>
-        </li>
-      -->
+      
+<!--         <li class="<%= active_nav_item('students', crud_actions) %>">
+          <%= link_to 'Students', students_path, class: 'nav-link' %>
+        </li> -->
+      
       <% end %>
     </ul>
   </aside>
