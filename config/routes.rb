@@ -1,6 +1,10 @@
 require 'sidekiq/web'
 
 Rails.application.routes.draw do
+  resources :volunteers
+  resources :stands
+  resources :departments
+  resources :jobs
   devise_for :admins
   put '/students/change_money', to: 'students#change_money', as: 'change_money'
   resources :students

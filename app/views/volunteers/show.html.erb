@@ -1,0 +1,64 @@
+<section class="section">
+  <div class="section-header d-mobile-none">
+    <h1>Voluntari</h1>
+    <div class="section-header-breadcrumb">
+      <div class="breadcrumb-item"><%= link_to 'Panou de control', root_path %></div>
+      <div class="breadcrumb-item"><%= link_to 'Voluntari', volunteers_path %></div>
+      <div class="breadcrumb-item">Vizualizare voluntar</div>
+    </div>
+  </div>
+
+  <div class="section-body">
+    <div class="card">
+      <div class="card-header">
+        <h4>
+          <%= @volunteer.name %> 
+          <span class="ml-3 badge badge-info"><%# @volunteer.department.name unless @volunteer.department.name == "Neatribuit" %></span>
+          <span class="ml-3 badge badge-light"><%# @volunteer.job.name %></span>
+        </h4>
+      </div>
+      <div class="card-body">
+        <dl class="row">
+          <dt class="col-sm-3">Nume:</dt>
+          <dd class="col-sm-9"><%= @volunteer.name %></dd>
+
+          <dt class="col-sm-3">Clasă:</dt>
+          <dd class="col-sm-9"><%=link_to @volunteer.grade.name, @volunteer.grade, class: "badge badge-primary" %></dd>
+
+          <dt class="col-sm-3">Atribuție:</dt>
+          <dd class="col-sm-9">
+            <% @volunteer.jobs.each do |job| %>
+              <span><%=link_to job.name, job, class: "badge badge-light" %></span>
+            <% end %>
+          </dd><br>
+
+          <dt class="col-sm-3">Departamente:</dt>
+          <dd class="col-sm-9">
+            <% @volunteer.departments.each do |department| %>
+              <span><%=link_to department.name, department, class: "badge badge-info" %></span>
+            <% end %>
+          </dd>
+
+          <dt class="col-sm-3">Adresă de e-mail:</dt>
+          <dd class="col-sm-9"><%= @volunteer.email %></dd>
+
+          <dt class="col-sm-3">Număr de telefon:</dt>
+          <dd class="col-sm-9"><%= @volunteer.phone %></dd>
+
+          <dt class="col-sm-3">Stand:</dt>
+          <dd class="col-sm-9">
+            <% @volunteer.stands.each do |stand| %>
+              <span><%=link_to stand.name, stand, class: "badge badge-warning" %></span>
+            <% end %>
+          </dd>
+
+        </dl>
+      </div>
+    </div>
+  </div>
+</section>
+
+<%= link_to icon('fas fa-edit', 'Modifică'), edit_volunteer_path(@volunteer), data: { turbolinks_action: 'replace' }, class: 'btn btn btn-icon icon-left btn-warning' %>
+<%= link_to icon('fas fa-arrow-left', 'Înapoi'), 'javascript:history.back()', class: 'btn btn-icon icon-left btn-secondary d-mobile-none' %>
+
+<% content_for(:page_title, 'Show Volunteer') %>

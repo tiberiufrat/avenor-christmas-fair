@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_10_17_145305) do
+ActiveRecord::Schema.define(version: 2020_10_18_182038) do
 
   create_table "admins", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -25,10 +25,49 @@ ActiveRecord::Schema.define(version: 2020_10_17_145305) do
     t.index ["reset_password_token"], name: "index_admins_on_reset_password_token", unique: true
   end
 
+  create_table "departments", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "departments_volunteers", force: :cascade do |t|
+    t.integer "volunteer_id"
+    t.integer "department_id"
+    t.index ["department_id"], name: "index_departments_volunteers_on_department_id"
+    t.index ["volunteer_id"], name: "index_departments_volunteers_on_volunteer_id"
+  end
+
   create_table "grades", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "jobs", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "jobs_volunteers", force: :cascade do |t|
+    t.integer "volunteer_id"
+    t.integer "job_id"
+    t.index ["job_id"], name: "index_jobs_volunteers_on_job_id"
+    t.index ["volunteer_id"], name: "index_jobs_volunteers_on_volunteer_id"
+  end
+
+  create_table "stands", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "stands_volunteers", force: :cascade do |t|
+    t.integer "volunteer_id"
+    t.integer "stand_id"
+    t.index ["stand_id"], name: "index_stands_volunteers_on_stand_id"
+    t.index ["volunteer_id"], name: "index_stands_volunteers_on_volunteer_id"
   end
 
   create_table "students", force: :cascade do |t|
@@ -41,5 +80,17 @@ ActiveRecord::Schema.define(version: 2020_10_17_145305) do
     t.index ["grade_id"], name: "index_students_on_grade_id"
   end
 
+  create_table "volunteers", force: :cascade do |t|
+    t.string "first_name"
+    t.string "last_name"
+    t.integer "grade_id", null: false
+    t.string "email"
+    t.string "phone"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["grade_id"], name: "index_volunteers_on_grade_id"
+  end
+
   add_foreign_key "students", "grades"
+  add_foreign_key "volunteers", "grades"
 end

@@ -26,6 +26,7 @@
       </div>
 
       <div class="row">
+
         <div class="col-12 col-md-6 col-lg-4">
           <div class="card card-primary">
             <div class="card-header">
@@ -39,16 +40,21 @@
             </div>
           </div>
         </div>
-        <div class="col-12 col-md-4 col-lg-4">
-          <div class="card card-secondary">
+
+        <div class="col-12 col-md-6 col-lg-4">
+          <div class="card card-warning">
             <div class="card-header">
-              <h4>Card Header</h4>
+              <h4>Voluntari</h4>
+              <div class="card-header-action">
+                <%= link_to("Vezi voluntarii", volunteers_path, class: "btn btn-warning") %>
+              </div>
             </div>
             <div class="card-body">
-              <p>Card body</p>
+              <h1><%= Volunteer.all.size %> <small class="text-muted"> voluntari</small></h1>
             </div>
           </div>
         </div>
+
         <div class="col-12 col-md-6 col-lg-4">
           <div class="card card-danger">
             <div class="card-header">

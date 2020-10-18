@@ -65,6 +65,43 @@
           </table>
           <%= link_to(icon('fas fa-user-plus', ' Adaugă elev în clasă'), new_student_path(grade: @grade), class: "btn btn-icon btn-success") %>
         <% end %>
+        <% unless @grade.volunteers.empty? %>
+          <h6 class="mt-5">Voluntari <span class="badge badge-info ml-2"><%= @grade.volunteers.size %></span></h6>
+          <div class="table-responsive">
+            <table class="table table-striped table-md">
+              <thead>
+                <tr>
+                  <th><%= sort_link_turbo(@search, :name) %></th>
+                  <th><%= sort_link_turbo(@search, :grade) %></th>
+                  <th><%= sort_link_turbo(@search, :email) %></th>
+                  <th><%= sort_link_turbo(@search, :phone) %></th>
+                  <th><%= sort_link_turbo(@search, :job) %></th>
+                  <th><%= sort_link_turbo(@search, :department) %></th>
+                  <th><%= sort_link_turbo(@search, :stand) %></th>
+                  <th>Acțiuni</th>
+                </tr>
+              </thead>
+              <tbody data-target="infinite-page.container">
+                <% @grade.volunteers.each do |volunteer| %>
+                  <tr data-target="infinite-page.item">
+                    <td><%= link_to volunteer.name, volunteer %></td>
+                    <td><%= volunteer.grade.name %></td>
+                    <td><%= volunteer.email %></td>
+                    <td><%= volunteer.phone %></td>
+                    <td><%= volunteer.jobs.first.name %></td>
+                    <td><%= volunteer.departments.first.name %></td>
+                    <td><%= volunteer.stands.first.name %></td>
+                    <td>
+                      <%= link_to icon('fas fa-eye'), volunteer, title: 'Vizualizează', class: 'btn btn-icon btn-sm btn-info mr-1' %>
+                      <%= link_to icon('fas fa-edit'), edit_volunteer_path(volunteer), title: 'Modifică', class: 'btn btn-icon btn-sm btn-warning mr-1' %>
+                      <%= link_to icon('fas fa-trash'), volunteer, title: 'Șterge', class: 'btn btn-icon btn-sm btn-danger', method: :delete, data: { confirm: 'Are you sure?', remote: true } %>
+                    </td>
+                  </tr>
+                <% end %>
+              </tbody>
+            </table>
+          </div>
+        <% end %>
       </div>
     </div>
   </div>

@@ -1,0 +1,24 @@
+<section class="section">
+  <div class="section-header d-mobile-none">
+    <h1>Departments</h1>
+    <div class="section-header-breadcrumb">
+      <div class="breadcrumb-item"><%= link_to 'Dashboard', root_path %></div>
+      <div class="breadcrumb-item"><%= link_to 'Departments', departments_path %></div>
+      <div class="breadcrumb-item">New Department</div>
+    </div>
+  </div>
+  <div class="section-body">
+    <div class="card">
+      <div class="card-header">
+        <h4>New Department</h4>
+      </div>
+      <div class="card-body">
+        <%= render 'form', department: @department %>
+      </div>
+    </div>
+  </div>
+</section>
+
+<%= link_to icon('fas fa-arrow-left', 'Back'), 'javascript:history.back()', class: 'btn btn-icon icon-left btn-secondary d-mobile-none' %>
+
+<% content_for(:page_title, 'New Department') %>

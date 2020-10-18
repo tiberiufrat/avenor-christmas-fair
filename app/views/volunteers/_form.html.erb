@@ -1,0 +1,37 @@
+<%= form_with(model: volunteer, data: { controller: 'validation' }) do |form| %>
+  <div class="form-group">
+    <%= form.label :first_name %>
+    <%= form.text_field :first_name, class: 'form-control' %>
+  </div>
+  <div class="form-group">
+    <%= form.label :last_name %>
+    <%= form.text_field :last_name, class: 'form-control' %>
+  </div>
+  <div class="form-group">
+    <%= form.label :grade_id, "Clasă" %>
+    <%= form.collection_select(:grade_id, Grade.all, :id, :name, {}, { class: 'form-control', data: { controller: 'select' } }) %>
+  </div>
+  <div class="form-group">
+    <%= form.label :job_id, "Atribuție" %>
+    <%= form.collection_select(:jobs, Job.all, :id, :name, {}, { class: 'form-control',  multiple: "", data: { controller: 'select' } }) %>
+  </div>
+  <div class="form-group">
+    <%= form.label :department_id, "Departament" %>
+    <%= form.collection_select(:departments, Department.all, :id, :name, {}, { class: 'form-control',  multiple: "", data: { controller: 'select' } }) %>
+  </div>
+  <div class="form-group">
+    <%= form.label :email %>
+    <%= form.email_field :email, class: 'form-control' %>
+  </div>
+  <div class="form-group">
+    <%= form.label :phone %>
+    <%= form.telephone_field :phone, class: 'form-control' %>
+  </div>
+  <div class="form-group">
+    <%= form.label :stand_id %>
+    <%= form.collection_select(:stands, Stand.all, :id, :name, {}, { class: 'form-control', multiple: "", data: { controller: 'select' } }) %>
+  </div>
+  <div class="card-footer pl-0">
+    <%= form.submit class: 'btn btn-success' %>
+  </div>
+<% end %>

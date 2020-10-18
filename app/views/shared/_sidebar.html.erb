@@ -25,6 +25,30 @@
         <% end %>
       </li>
 
+      <li class="<%= active_nav_item('volunteers', 'index') %>">
+        <%= link_to volunteers_path, class: "nav-link" do %>
+          <i class="fab fa-person-sign"></i> <span>Voluntari</span>
+        <% end %>
+      </li>
+
+      <li class="<%= active_nav_item('departments', 'index') %>">
+        <%= link_to departments_path, class: "nav-link" do %>
+          <i class="fab fa-building"></i> <span>Departamente</span>
+        <% end %>
+      </li>
+
+      <li class="<%= active_nav_item('jobs', 'index') %>">
+        <%= link_to jobs_path, class: "nav-link" do %>
+          <i class="fab fa-users"></i> <span>Atribuții</span>
+        <% end %>
+      </li>
+
+      <li class="<%= active_nav_item('stands', 'index') %>">
+        <%= link_to stands_path, class: "nav-link" do %>
+          <i class="fab fa-shopping-cart"></i> <span>Standuri</span>
+        <% end %>
+      </li>
+
       <li class="menu-header">Controlori</li>
       <%= render 'shared/sidebar_dropdown', title: 'Resurse', icon: 'fas fa-file-alt' do %>
       
