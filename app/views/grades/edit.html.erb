@@ -1,16 +1,16 @@
 <section class="section">
   <div class="section-header d-mobile-none">
-    <h1>Grades</h1>
+    <h1>Clase</h1>
     <div class="section-header-breadcrumb">
-      <div class="breadcrumb-item"><%= link_to 'Dashboard', root_path %></div>
-      <div class="breadcrumb-item"><%= link_to 'Grades', grades_path %></div>
-      <div class="breadcrumb-item">Editing Grade</div>
+      <div class="breadcrumb-item"><%= link_to 'Panou de control', root_path %></div>
+      <div class="breadcrumb-item"><%= link_to 'Clase', grades_path %></div>
+      <div class="breadcrumb-item">Modificare clasă</div>
     </div>
   </div>
   <div class="section-body">
     <div class="card">
       <div class="card-header">
-        <h4>Editing Grade</h4>
+        <h4>Modificare clasă</h4>
       </div>
       <div class="card-body">
         <%= render 'form', grade: @grade %>
@@ -19,7 +19,7 @@
   </div>
 </section>
 
-<%= link_to icon('fas fa-eye', 'Show'), @grade, data: { turbolinks_action: 'replace' }, class: 'btn btn-icon icon-left btn-info' %>
-<%= link_to icon('fas fa-arrow-left', 'Back'), 'javascript:history.back()', class: 'btn btn-icon icon-left btn-secondary d-mobile-none' %>
+<%= link_to icon('fas fa-eye', 'Vizualizare'), @grade, data: { turbolinks_action: 'replace' }, class: 'btn btn-icon icon-left btn-info' %>
+<%= link_to icon('fas fa-arrow-left', 'Înapoi'), 'javascript:history.back()', class: 'btn btn-icon icon-left btn-secondary d-mobile-none' %>
 
-<% content_for(:page_title, 'Editing Grade') %>
+<% content_for(:page_title, 'Modificare clasă') %>

@@ -12,6 +12,8 @@ class GradesController < ApplicationController
 
   def show
     fresh_when etag: @grade
+    @search = Student.reverse_chronologically.ransack(params[:q])
+    @students = @grade.students.order(:first_name)
   end
 
   def new

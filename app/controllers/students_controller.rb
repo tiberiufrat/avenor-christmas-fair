@@ -15,7 +15,12 @@ class StudentsController < ApplicationController
   end
 
   def new
-    @student = Student.new
+    if params[:grade]
+      grade = Grade.find(params[:grade])
+      @student = grade.students.build
+    else
+      @student = Student.new
+    end
   end
 
   def edit
