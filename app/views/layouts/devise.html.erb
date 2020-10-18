@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<meta content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no" name="viewport">
+		<title>Your Title — Stisla</title>
+
+		<%= csrf_meta_tags %>
+	    <%= csp_meta_tag %>
+
+	    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+	    <%= stylesheet_link_tag 'mobile', media: 'all', 'data-turbolinks-track': 'reload' if platform.mobile_app? %>
+
+	    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+	</head>
+
+	<body>
+		<div id="app">
+		    <section class="section">
+		    	<%= content_for?(:content) ? yield(:content) : yield %>
+		    </section>
+		</div>
+	</body>
+</html>

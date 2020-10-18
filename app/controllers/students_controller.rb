@@ -3,8 +3,8 @@ class StudentsController < ApplicationController
 
   def index
     @search = Student.reverse_chronologically.ransack(params[:q])
-
     respond_to do |format|
+      format.js
       format.any(:html, :json) { @students = set_page_and_extract_portion_from @search.result }
       format.csv { render csv: @search.result }
     end
@@ -36,6 +36,7 @@ class StudentsController < ApplicationController
     respond_to do |format|
       format.html { redirect_to @student, notice: 'Student was successfully updated.' }
       format.json { render :show }
+      format.js
     end
   end
 
@@ -47,12 +48,24 @@ class StudentsController < ApplicationController
     end
   end
 
+  def change_money
+    if params[:change_money]
+      @student = Student.find(params[:id])
+      puts @student.name
+      @student.change_money(params[:change_money].to_i, params[:operation])
+      puts "New balance: #{@student.balance}"
+      respond_to do |format|
+        format.js
+      end
+    end
+  end
+ 
   private
     def set_student
       @student = Student.find(params[:id])
     end
 
     def student_params
-      params.require(:student).permit(:balance, :first_name, :last_name, :grade_id)
+      params.require(:student).permit(:balance, :first_name, :last_name, :grade_id, :id, :change_money, :operation)
     end
 end

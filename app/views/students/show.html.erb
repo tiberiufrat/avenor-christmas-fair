@@ -1,35 +1,90 @@
 <section class="section">
   <div class="section-header d-mobile-none">
-    <h1>Students</h1>
+    <h1>Elevi</h1>
     <div class="section-header-breadcrumb">
-      <div class="breadcrumb-item"><%= link_to 'Dashboard', root_path %></div>
-      <div class="breadcrumb-item"><%= link_to 'Students', students_path %></div>
-      <div class="breadcrumb-item">Show Student</div>
+      <div class="breadcrumb-item"><%= link_to 'Panou de control', root_path %></div>
+      <div class="breadcrumb-item"><%= link_to 'Elevi', students_path %></div>
+      <div class="breadcrumb-item">Vizualizare elev</div>
     </div>
   </div>
 
   <div class="section-body">
     <div class="card">
       <div class="card-header">
-        <h4>Show Student</h4>
+        <h4><%= @student.name %> <span class="ml-3 badge badge-info"><%= @student.grade.name %></span></h4>
       </div>
       <div class="card-body">
         <dl class="row">
-          <dt class="col-sm-3">Balance:</dt>
-          <dd class="col-sm-9"><%= @student.balance %></dd>
-          <dt class="col-sm-3">First name:</dt>
+          <dt class="col-sm-3">Prenume:</dt>
           <dd class="col-sm-9"><%= @student.first_name %></dd>
-          <dt class="col-sm-3">Last name:</dt>
+          <dt class="col-sm-3">Nume:</dt>
           <dd class="col-sm-9"><%= @student.last_name %></dd>
-          <dt class="col-sm-3">Grade:</dt>
-          <dd class="col-sm-9"><%= @student.grade %></dd>
+          <dt class="col-sm-3">Bani rămași:</dt>
+          <dd class="col-sm-9">
+            <span class="badge badge-light">
+              <span class="student-balance" id="<%= @student.id %>">
+                <%= @student.balance %>
+              </span> lei
+            </span>
+          </dd>
+          <dt class="col-sm-3">Clasă:</dt>
+          <dd class="col-sm-9"><%= link_to(@student.grade.name, @student.grade) %></dd>
         </dl>
+        <div class="button-group mb-3">
+          <button type="button" class="btn btn-icon btn-success mr-1 add-money" id="<%= @student.id %>" title="Adaugă bani">
+            <i class="fas fa-plus"></i>
+            Adaugă bani
+          </button>
+
+          <button type="button" class="btn btn-icon btn-danger mr-1 remove-money" id="<%= @student.id %>" title="Scade bani">
+            <i class="fas fa-minus"></i>
+            Scade bani
+          </button>
+        </div>
+
+        <%= form_tag change_money_path, method: :put, class: "mt-3 add-money-form form-inline add-money-#{@student.id}", style: "display: block;", remote: true do %>
+          <%= hidden_field_tag :id, @student.id %>
+          <%= hidden_field_tag :operation, '+' %>
+          <div class="input-group" style="width: 239px;">
+            <%= number_field_tag :change_money, params[:change_money], class: "form-control" %>
+            <div class="input-group-append">
+              <div class="input-group-text">lei</div>
+              <%= submit_tag "Adaugă", class: "btn btn-success btn-sm submit-change-form", style: "width: 65px;" %>
+            </div>
+          </div>
+        <% end %>
+
+        <%= form_tag change_money_path, method: :put, class: "mt-3 remove-money-form form-inline remove-money-#{@student.id}", style: "display: block;", remote: true do %>
+          <%= hidden_field_tag :id, @student.id %>
+          <%= hidden_field_tag :operation, '-' %>
+          <div class="input-group" style="width: 239px;">
+            <%= number_field_tag :change_money, params[:change_money], class: "form-control" %>
+            <div class="input-group-append">
+              <div class="input-group-text">lei</div>
+              <%= submit_tag "Scade", class: "btn btn-danger btn-sm submit-change-form", style: "width: 65px;" %>
+            </div>
+          </div>
+        <% end %>
       </div>
     </div>
   </div>
 </section>
 
-<%= link_to icon('fas fa-edit', 'Edit'), edit_student_path(@student), data: { turbolinks_action: 'replace' }, class: 'btn btn btn-icon icon-left btn-warning' %>
-<%= link_to icon('fas fa-arrow-left', 'Back'), 'javascript:history.back()', class: 'btn btn-icon icon-left btn-secondary d-mobile-none' %>
+<%= link_to icon('fas fa-user-edit', 'Modifică'), edit_student_path(@student), data: { turbolinks_action: 'replace' }, class: 'btn btn btn-icon icon-left btn-warning' %>
+<%= link_to icon('fas fa-trash', 'Șterge'), @student, class: 'btn btn-icon btn-danger', method: :delete, data: { confirm: 'Doriți să ștergeți acest elev?', remote: true } %>
+<%= link_to icon('fas fa-arrow-left', 'Înapoi'), 'javascript:history.back()', class: 'btn btn-icon icon-left btn-secondary d-mobile-none' %>
 
-<% content_for(:page_title, 'Show Student') %>
+<% content_for(:page_title, 'Vizualizare elev') %>
+
+<script>
+  $( ".add-money-form" ).hide();
+  $( ".remove-money-form" ).hide();
+
+  $( ".add-money" ).click(function() {
+    $( ".add-money-form" ).toggle(300);
+  });
+
+  $( ".remove-money" ).click(function() {
+    $( ".remove-money-form" ).toggle(300);
+  });
+</script>
