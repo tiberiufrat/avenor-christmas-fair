@@ -1,26 +1,67 @@
-<h2>Log in</h2>
+<div class="container mt-5">
+  <div class="row">
+    <div class="col-12 col-sm-8 offset-sm-2 col-md-6 offset-md-3 col-lg-6 offset-lg-3 col-xl-4 offset-xl-4">
+      <div class="login-brand">
+        <img src="assets/img/stisla-fill.svg" alt="logo" class="shadow-light rounded-circle" width="100">
+      </div>
 
-<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-  </div>
+      <div class="card card-primary">
+        <div class="card-header"><h4>Autentificare</h4></div>
 
-  <div class="field">
-    <%= f.label :password %><br />
-    <%= f.password_field :password, autocomplete: "current-password" %>
-  </div>
+        <div class="card-body">
+          <% flash.each do |name, msg| %>
+            <% if name == "alert" %>
+              <div class="card bg-danger">
+                <div class="card-body">
+                  <%= msg %>
+                </div>
+              </div>
+            <% end %>
+          <% end %>  
 
-  <% if devise_mapping.rememberable? %>
-    <div class="field">
-      <%= f.check_box :remember_me %>
-      <%= f.label :remember_me %>
+          <%= form_for(resource, as: resource_name, url: session_path(resource_name), html: {class: "needs-validation", novalidate: ""}) do |f| %>
+            <div class="form-group">
+              <%= f.label :email, "Adresă de e-mail" %>
+              <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control", autofocus: true, required: "" %>
+              <div class="invalid-feedback">
+                Te rugăm să completezi adresa de e-mail
+              </div>
+            </div>
+
+            <div class="form-group">
+              <div class="d-block">
+                <%= f.label :password, "Parolă", class: "control-label" %>
+                <div class="float-right">
+                  <%= link_to("Ai uitat parola?", new_admin_password_path, class: "text-small") %>
+                </div>
+              </div>
+              <%= f.password_field :password, autocomplete: "current-password", class: "form-control", required: "" %>
+              <div class="invalid-feedback">
+                Te rugăm să completezi parola
+              </div>
+            </div>
+
+            <% if devise_mapping.rememberable? %>
+              <div class="form-group">
+                <div class="custom-control custom-checkbox">
+                  <%= f.check_box :remember_me, class: "custom-control-input" %>
+                  <%= f.label :remember_me, "Ține-mă minte", class: "custom-control-label" %>
+                </div>
+              </div>
+            <% end %>
+
+            <div class="form-group">
+              <%= f.submit "Autentifică-te", class: "btn btn-primary btn-lg btn-block" %>
+            </div>
+          <% end %>
+        </div>
+      </div>
+      <div class="mt-5 text-muted text-center">
+        Nu ai un cont? <%= link_to "Înregistrează-te", new_registration_path(resource_name) %>
+      </div>
+      <div class="simple-footer">
+        © 2020
+      </div>
     </div>
-  <% end %>
-
-  <div class="actions">
-    <%= f.submit "Log in" %>
   </div>
-<% end %>
-
-<%= render "devise/shared/links" %>
+</div>

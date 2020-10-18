@@ -257,6 +257,7 @@ DEPENDENCIES
   capybara (>= 2.15)
   devise
   geared_pagination
+  i18n (~> 1.8, >= 1.8.5)
   jbuilder (~> 2.7)
   listen (~> 3.2)
   pg

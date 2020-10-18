@@ -9,7 +9,8 @@ Bundler.require(*Rails.groups)
 module AvenorChristmasFair
   class Application < Rails::Application
     config.app                            = config_for(:config)
-    config.i18n.default_locale            = :en
+    config.i18n.available_locales         = ["ro","en"]
+    config.i18n.default_locale            = :ro
     config.time_zone                      = 'UTC'
     config.generators.scaffold_stylesheet = false
     # Initialize configuration defaults for originally generated Rails version.

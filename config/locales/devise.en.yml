@@ -63,3 +63,48 @@ en:
       not_saved:
         one: "1 error prohibited this %{resource} from being saved:"
         other: "%{count} errors prohibited this %{resource} from being saved:"
+
+ro:
+  devise:
+    failure:
+      already_authenticated: "Ești deja autentificat."
+      inactive: "Contul tău nu este încă activat."
+      invalid: "%{authentication_keys} sau parolă invalide."
+      locked: "Contul tău este blocat."
+      last_attempt: "Mai ai o încercare până când contul îți va fi blocat."
+      not_found_in_database: "%{authentication_keys} sau parolă nevalide."
+      timeout: "Sesiunea ta a expirat. Te rugăm să te reautentifici pentru a continua."
+      unauthenticated: "Trebuie să te autentifici înainte de a continua."
+      unconfirmed: "Trebuie să îți confirmi adresa de e-mail înainte de a continua."
+    mailer:
+      confirmation_instructions:
+        subject: "Instrucțiuni de confirmare"
+      reset_password_instructions:
+        subject: "Instrucțiuni pentru resetarea parolei"
+      unlock_instructions:
+        subject: "Intrucțiuni pentru deblocare"
+      email_changed:
+        subject: "Adresă de e-mail schimbată"
+      password_change:
+        subject: "Parolă schimbată"
+    omniauth_callbacks:
+      failure: "Nu te putem autentifica prin %{kind} pentru că \"%{reason}\"."
+      success: "Autentificare cu succes prin contul %{kind}."
+    registrations:
+      destroyed: "Contul tău a fost eliminat cu succes."
+      signed_up: "Bine ai venit. Înregistrarea s-a realizat cu succes."
+      updated: "Contul tău a fost actualizat cu succes."
+    sessions:
+      signed_in: "Autentificare reușită."
+      signed_out: "Deautentificare reușită."
+      already_signed_out: "Ești deja deautentificat."
+  errors:
+    messages:
+      already_confirmed: "a fost deja confirmat, încearcă să te autentifici acum"
+      confirmation_period_expired: "trebuie să fie confirmată în cel mult %{period}, vă rugăm să realizați o cerere nouă"
+      expired: "a expirat, vă rugăm să realizați o cerere nouă"
+      not_found: "nu a fost găsit"
+      not_locked: "nu era blocat"
+      not_saved:
+        one: "O eroare a împiedicat această %{resource} de la a fi salvată:"
+        other: "%{count} (de) erori au împiedicat această %{resource} de la a fi salvată"
