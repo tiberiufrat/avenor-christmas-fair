@@ -72,7 +72,7 @@ ro:
       invalid: "%{authentication_keys} sau parolă invalide."
       locked: "Contul tău este blocat."
       last_attempt: "Mai ai o încercare până când contul îți va fi blocat."
-      not_found_in_database: "%{authentication_keys} sau parolă nevalide."
+      not_found_in_database: "%{authentication_keys} sau parolă sunt nevalide."
       timeout: "Sesiunea ta a expirat. Te rugăm să te reautentifici pentru a continua."
       unauthenticated: "Trebuie să te autentifici înainte de a continua."
       unconfirmed: "Trebuie să îți confirmi adresa de e-mail înainte de a continua."

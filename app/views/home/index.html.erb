@@ -2,6 +2,7 @@
   <div class="section-header d-mobile-none">
     <h1>Panou de control</h1>
   </div>
+
   <% unless admin_signed_in? %>
     <div class="hero align-items-center bg-info text-white">
       <div class="hero-inner text-center">
@@ -12,9 +13,56 @@
         </div>
       </div>
     </div>
+
   <% else %>
-      
+      <div class="hero text-white hero-bg-image hero-bg-parallax mb-4" style="background-image: url('<%= image_path "unsplash/andre-benz-1214056-unsplash.jpg" %>');">
+        <div class="hero-inner">
+          <h2>Bine ai venit, <%= current_admin.name %></h2>
+          <p class="lead">Accesează resursele din bara laterală sau efectuează o căutare.</p>
+          <div class="mt-4">
+            <a href="#" class="btn btn-outline-white btn-lg btn-icon icon-left"><i class="far fa-user"></i> Setup Account</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-12 col-md-6 col-lg-4">
+          <div class="card card-primary">
+            <div class="card-header">
+              <h4>Elevi</h4>
+              <div class="card-header-action">
+                <%= link_to("Vezi elevii", students_path, class: "btn btn-primary") %>
+              </div>
+            </div>
+            <div class="card-body">
+              <h1><%= Student.all.size %> <small class="text-muted"> elevi</small></h1>
+            </div>
+          </div>
+        </div>
+        <div class="col-12 col-md-4 col-lg-4">
+          <div class="card card-secondary">
+            <div class="card-header">
+              <h4>Card Header</h4>
+            </div>
+            <div class="card-body">
+              <p>Card body</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-12 col-md-6 col-lg-4">
+          <div class="card card-danger">
+            <div class="card-header">
+              <h4>Card Header</h4>
+            </div>
+            <div class="card-body">
+              <p>Card body</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
   <% end %>
+
 </section>
 
-<% content_for(:page_title, 'Dashboard') %>
+<% content_for(:page_title, 'Panou de control') %>
