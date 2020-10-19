@@ -51,9 +51,9 @@
                   <td><%= link_to volunteer.grade.name, volunteer.grade, class: "badge badge-primary" %></td>
                   <td><%= volunteer.email %></td>
                   <td><%= volunteer.phone %></td>
-                  <td><%= link_to volunteer.jobs.first.name, volunteer.jobs.first, class: "badge badge-light" %></td>
-                  <td><%= link_to volunteer.departments.first.name, volunteer.departments.first, class: "badge badge-info" %></td>
-                  <td><%= link_to volunteer.stands.first.name, volunteer.stands.first, class: "badge badge-warning" %></td>
+                  <td><%= link_to volunteer.jobs.first.name, volunteer.jobs.first, class: "badge badge-light" unless volunteer.jobs.empty? %></td>
+                  <td><%= link_to volunteer.departments.first.name, volunteer.departments.first, class: "badge badge-info" unless volunteer.departments.empty? %></td>
+                  <td><%= link_to volunteer.stands.first.name, volunteer.stands.first, class: "badge badge-warning" unless volunteer.stands.empty? %></td>
                   <td>
                     <%= link_to icon('fas fa-eye'), volunteer, title: 'Vizualizează', class: 'btn btn-icon btn-sm btn-info mr-1' %>
                     <%= link_to icon('fas fa-edit'), edit_volunteer_path(volunteer), title: 'Modifică', class: 'btn btn-icon btn-sm btn-warning mr-1' %>

@@ -9,15 +9,15 @@
   </div>
   <div class="form-group">
     <%= form.label :grade_id, "Clasă" %>
-    <%= form.collection_select(:grade_id, Grade.all, :id, :name, {}, { class: 'form-control', data: { controller: 'select' } }) %>
+    <%= form.collection_select(:grade_id, Grade.all, :id, :name, {}, { class: 'form-control', required: "", data: { controller: 'select' } }) %>
   </div>
   <div class="form-group">
     <%= form.label :job_id, "Atribuție" %>
-    <%= form.collection_select(:jobs, Job.all, :id, :name, {}, { class: 'form-control',  multiple: "", data: { controller: 'select' } }) %>
+    <%= form.collection_select(:jobs, Job.all, :id, :name, {}, { class: 'form-control', required: "",  multiple: "", data: { controller: 'select' } }) %>
   </div>
   <div class="form-group">
     <%= form.label :department_id, "Departament" %>
-    <%= form.collection_select(:departments, Department.all, :id, :name, {}, { class: 'form-control',  multiple: "", data: { controller: 'select' } }) %>
+    <%= form.collection_select(:departments, Department.all, :id, :name, {}, { class: 'form-control', required: "",  multiple: "", data: { controller: 'select' } }) %>
   </div>
   <div class="form-group">
     <%= form.label :email %>
@@ -29,7 +29,7 @@
   </div>
   <div class="form-group">
     <%= form.label :stand_id %>
-    <%= form.collection_select(:stands, Stand.all, :id, :name, {}, { class: 'form-control', multiple: "", data: { controller: 'select' } }) %>
+    <%= form.collection_select(:stands, Stand.all, :id, :name, {}, { class: 'form-control', required: "", multiple: "", data: { controller: 'select' } }) %>
   </div>
   <div class="card-footer pl-0">
     <%= form.submit class: 'btn btn-success' %>
