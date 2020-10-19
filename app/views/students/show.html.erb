@@ -28,7 +28,7 @@
             </span>
           </dd>
           <dt class="col-sm-3">Clasă:</dt>
-          <dd class="col-sm-9"><%= link_to(@student.grade.name, @student.grade) %></dd>
+          <dd class="col-sm-9"><%= link_to @student.grade.name, @student.grade, class: "badge badge-primary" %></dd>
         </dl>
         <div class="button-group mb-3">
           <button type="button" class="btn btn-icon btn-success mr-1 add-money" id="<%= @student.id %>" title="Adaugă bani">
