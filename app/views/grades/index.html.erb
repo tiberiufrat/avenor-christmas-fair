@@ -42,7 +42,7 @@
             <tbody data-target="infinite-page.container">
               <% @grades.each do |grade| %>
                 <tr data-target="infinite-page.item">
-                  <td><%= link_to grade.name, grade, style: "color: inherit" %></td>
+                  <td><%= link_to grade.name, grade, class: "badge badge-primary" %></td>
                   <td><%= grade.students.size %></td>
                   <td>
                     <%= link_to icon('fas fa-eye'), grade, title: 'Vizualizează', class: 'btn btn-icon btn-sm btn-info mr-1' %>

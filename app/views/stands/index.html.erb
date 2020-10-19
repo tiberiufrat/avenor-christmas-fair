@@ -35,13 +35,15 @@
             <thead>
               <tr>
                 <th><%= sort_link_turbo(@search, :name) %></th>
+                <th><%= sort_link_turbo(@search, :volunteers) %></th>
                 <th>Acțiuni</th>
               </tr>
             </thead>
             <tbody data-target="infinite-page.container">
               <% @stands.each do |stand| %>
                 <tr data-target="infinite-page.item">
-                  <td><%= stand.name %></td>
+                  <td><%= link_to stand.name, stand, class: "badge badge-warning" %></td>
+                  <td><%= link_to stand.volunteers.size, stand, class: "badge badge-success" %></td>
                   <td>
                     <%= link_to icon('fas fa-eye'), stand, title: 'Vizualizează', class: 'btn btn-icon btn-sm btn-info mr-1' %>
                     <%= link_to icon('fas fa-edit'), edit_stand_path(stand), title: 'Modifică', class: 'btn btn-icon btn-sm btn-warning mr-1' %>

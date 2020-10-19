@@ -12,6 +12,7 @@ class JobsController < ApplicationController
 
   def show
     fresh_when etag: @job
+    @search = Volunteer.reverse_chronologically.ransack(params[:q])
   end
 
   def new

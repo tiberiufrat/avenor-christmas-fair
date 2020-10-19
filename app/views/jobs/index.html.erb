@@ -35,13 +35,15 @@
             <thead>
               <tr>
                 <th><%= sort_link_turbo(@search, :name) %></th>
+                <th><%= sort_link_turbo(@search, :volunteers) %></th>
                 <th>Acțiuni</th>
               </tr>
             </thead>
             <tbody data-target="infinite-page.container">
               <% @jobs.each do |job| %>
                 <tr data-target="infinite-page.item">
-                  <td><%= job.name %></td>
+                  <td><%= link_to job.name, job, class: "badge badge-light" %></td>
+                  <td><%= link_to job.volunteers.size, job, class: "badge badge-success" %></td>
                   <td>
                     <%= link_to icon('fas fa-eye'), job, title: 'Vizualizează', class: 'btn btn-icon btn-sm btn-info mr-1' %>
                     <%= link_to icon('fas fa-edit'), edit_job_path(job), title: 'Modifică', class: 'btn btn-icon btn-sm btn-warning mr-1' %>

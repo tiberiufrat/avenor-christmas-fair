@@ -25,7 +25,6 @@
                   <th><%= sort_link_turbo(@search, :email) %></th>
                   <th><%= sort_link_turbo(@search, :phone) %></th>
                   <th><%= sort_link_turbo(@search, :job) %></th>
-                  <th><%= sort_link_turbo(@search, :department) %></th>
                   <th><%= sort_link_turbo(@search, :stand) %></th>
                   <th>Acțiuni</th>
                 </tr>
@@ -34,12 +33,11 @@
                 <% @department.volunteers.each do |volunteer| %>
                   <tr data-target="infinite-page.item">
                     <td><%= link_to volunteer.name, volunteer %></td>
-                    <td><%= volunteer.grade.name %></td>
+                    <td><%= link_to volunteer.grade.name, volunteer.grade, class: "badge badge-primary" %></td>
                     <td><%= volunteer.email %></td>
                     <td><%= volunteer.phone %></td>
-                    <td><%= volunteer.jobs.first.name %></td>
-                    <td><%= volunteer.departments.first.name %></td>
-                    <td><%= volunteer.stands.first.name %></td>
+                    <td><%= link_to volunteer.jobs.first.name, volunteer.jobs.first, class: "badge badge-light" %></td>
+                    <td><%= link_to volunteer.stands.first.name, volunteer.stands.first, class: "badge badge-warning" %></td>
                     <td>
                       <%= link_to icon('fas fa-eye'), volunteer, title: 'Vizualizează', class: 'btn btn-icon btn-sm btn-info mr-1' %>
                       <%= link_to icon('fas fa-edit'), edit_volunteer_path(volunteer), title: 'Modifică', class: 'btn btn-icon btn-sm btn-warning mr-1' %>

@@ -1,16 +1,16 @@
 <section class="section">
   <div class="section-header d-mobile-none">
-    <h1>Jobs</h1>
+    <h1>Atribuții</h1>
     <div class="section-header-breadcrumb">
-      <div class="breadcrumb-item"><%= link_to 'Dashboard', root_path %></div>
-      <div class="breadcrumb-item"><%= link_to 'Jobs', jobs_path %></div>
-      <div class="breadcrumb-item">New Job</div>
+      <div class="breadcrumb-item"><%= link_to 'Panou de control', root_path %></div>
+      <div class="breadcrumb-item"><%= link_to 'Atribuții', jobs_path %></div>
+      <div class="breadcrumb-item">Adaugă o atribuție</div>
     </div>
   </div>
   <div class="section-body">
     <div class="card">
       <div class="card-header">
-        <h4>New Job</h4>
+        <h4>Adaugă o atribuție</h4>
       </div>
       <div class="card-body">
         <%= render 'form', job: @job %>
@@ -21,4 +21,4 @@
 
 <%= link_to icon('fas fa-arrow-left', 'Back'), 'javascript:history.back()', class: 'btn btn-icon icon-left btn-secondary d-mobile-none' %>
 
-<% content_for(:page_title, 'New Job') %>
+<% content_for(:page_title, 'Adaugă o atribuție') %>

@@ -35,13 +35,15 @@
             <thead>
               <tr>
                 <th><%= sort_link_turbo(@search, :name) %></th>
+                <th><%= sort_link_turbo(@search, :volunteers, "Voluntari") %></th>
                 <th>Acțiuni</th>
               </tr>
             </thead>
             <tbody data-target="infinite-page.container">
               <% @departments.each do |department| %>
                 <tr data-target="infinite-page.item">
-                  <td><%= link_to department.name, department, style: "color: inherit;" %></td>
+                  <td><%= link_to department.name, department, class: "badge badge-info" %></td>
+                  <td><%= link_to department.volunteers.size, department, class: "badge badge-success" %></td>
                   <td>
                     <%= link_to icon('fas fa-eye'), department, title: 'Vizualizează', class: 'btn btn-icon btn-sm btn-info mr-1' %>
                     <%= link_to icon('fas fa-edit'), edit_department_path(department), title: 'Modifică', class: 'btn btn-icon btn-sm btn-warning mr-1' %>

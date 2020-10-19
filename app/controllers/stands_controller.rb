@@ -12,6 +12,7 @@ class StandsController < ApplicationController
 
   def show
     fresh_when etag: @stand
+    @search = Volunteer.reverse_chronologically.ransack(params[:q])
   end
 
   def new
