@@ -1,48 +1,112 @@
-<h2>Edit <%= resource_name.to_s.humanize %></h2>
+<div class="container mt-5">
+  <div class="row">
+    <div class="col-12 col-sm-10 offset-sm-1 col-md-8 offset-md-2 col-lg-8 offset-lg-2 col-xl-8 offset-xl-2">
+      <%= link_to(root_path) do %>
+        <div class="login-brand">
+          <%= image_tag("stisla-fill.svg", alt: "logo", class: "shadow-light rounded-circle", width: "100") %>
+        </div>
+      <% end %>
 
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
-  <%= render "devise/shared/error_messages", resource: resource %>
+      <div class="card card-primary">
+        <div class="card-header"><h4>Modificare cont</h4></div>
 
-  <div class="field">
-    <%= f.label :name %><br />
-    <%= f.text_field :name, autofocus: true, autocomplete: "email" %>
+        <div class="card-body">
+          <% resource.errors.full_messages.each do |msg| %>
+            <div class="card bg-danger">
+              <div class="card-body">
+                <%= msg %>
+              </div>
+            </div>
+          <% end %>
+
+            <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+              <div class="card bg-warning">
+                <div class="card-body">
+                  Se așteaptă confirmarea pentru: <%= resource.unconfirmed_email %>
+                </div>
+              </div>
+            <% end %>
+
+
+          <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put, class: "needs-validation", novalidate: "" }) do |f| %>
+            
+            <div class="row">
+              <div class="form-group col-6">
+                <%= f.label :name, "Nume" %>
+                <%= f.text_field :name, autofocus: true, autocomplete: "name", class: "form-control", required: "" %>
+                <div class="invalid-feedback">
+                  Te rugăm să completezi numele
+                </div>
+              </div>
+
+              <div class="form-group col-6">
+                <%= f.label :email, "Adresă de e-mail" %>
+                <%= f.email_field :email, autocomplete: "email", class: "form-control", autofocus: true, required: "" %>
+                <div class="invalid-feedback">
+                  Te rugăm să completezi adresa de e-mail
+                </div>
+              </div>
+            </div>
+
+            <div class="form-divider">
+              Schimbă-ți parola  <br> <small>Nu completa nimic dacă nu vrei să-ți schimbi parola.</small>
+            </div>
+
+            <div class="row">
+              <div class="form-group col-6">
+                <%= f.label :password, "Parolă", class: "control-label" %>
+                <%= f.password_field :password, autocomplete: "new-password", class: "form-control", id: "password" %>
+                <small id="passwordHelp" class="form-text text-muted">Minimum <%= @minimum_password_length %> caractere</small>
+                <div class="invalid-feedback">
+                  Te rugăm să introduci o parolă nouă
+                </div>
+              </div>
+
+              <div class="form-group col-6">
+                <%= f.label :password_confirmation, "Confirmă parola", class: "control-label" %>
+                <%= f.password_field :password_confirmation, id: "password-confirmation", autocomplete: "new-password", class: "form-control"%>
+                <div class="invalid-feedback">
+                  Te rugăm să confirmi parola
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <%= f.label :current_password, "Parola curentă", class: "control-label" %>
+              <%= f.password_field :current_password, autocomplete: "new-password", class: "form-control", required: "" %>
+              <div class="invalid-feedback">
+                Te rugăm să completezi parola curentă
+              </div>
+              <small id="passwordHelp" class="form-text text-muted">Avem nevoie de parola ta din prezent pentru a ne asigura că tu faci aceste modificări.</small>
+            </div>
+
+            <div class="form-group">
+              <%= f.submit "Modifică contul", class: "btn btn-primary btn-lg btn-block", id: "submit" %>
+            </div>
+          <% end %>
+        </div>
+      </div>
+      <div class="mt-5 text-muted text-center">
+        Ai deja un cont? <%= link_to "Autentifică-te", new_session_path(resource_name) %> | <%= link_to "Înapoi", :back %>
+      </div>
+      <div class="mt-2 text-muted text-center">
+        <%= link_to "Șterge-mi contul", registration_path(resource_name), data: { confirm: "Ești sigur că dorești să-ți ștergi contul?" }, method: :delete %>
+      </div>
+      <div class="simple-footer">
+        © 2020
+      </div>
+    </div>
   </div>
+</div>
 
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autocomplete: "email" %>
-  </div>
+<script>
+  $("#password").on("input propertychange paste", function() {
+    if ($("#password").val() !== "") {
+      $("#password-confirmation").attr( "required", "true");
+    }
 
-  <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
-    <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
-  <% end %>
-
-  <div class="field">
-    <%= f.label :password %> <i>(leave blank if you don't want to change it)</i><br />
-    <%= f.password_field :password, autocomplete: "new-password" %>
-    <% if @minimum_password_length %>
-      <br />
-      <em><%= @minimum_password_length %> characters minimum</em>
-    <% end %>
-  </div>
-
-  <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i><br />
-    <%= f.password_field :current_password, autocomplete: "current-password" %>
-  </div>
-
-  <div class="actions">
-    <%= f.submit "Update" %>
-  </div>
-<% end %>
-
-<h3>Cancel my account</h3>
-
-<p>Unhappy? <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete %></p>
-
-<%= link_to "Back", :back %>
+    if ($("#password").val() === "") {
+      $("#password-confirmation").removeAttr("required");
+    }
+  });
+</script>

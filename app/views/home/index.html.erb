@@ -20,7 +20,7 @@
           <h2>Bine ai venit, <%= current_admin.name %></h2>
           <p class="lead">Accesează resursele din bara laterală sau efectuează o căutare.</p>
           <div class="mt-4">
-            <a href="#" class="btn btn-outline-white btn-lg btn-icon icon-left"><i class="far fa-user"></i> Setup Account</a>
+            <%= link_to(icon('fas fa-user', ' Modificare detalii cont'), edit_admin_registration_path, class: "btn btn-outline-white btn-lg btn-icon icon-left") %>
           </div>
         </div>
       </div>
