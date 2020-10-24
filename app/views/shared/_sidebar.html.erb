@@ -49,14 +49,21 @@
         <% end %>
       </li>
 
-      <li class="menu-header">Controlori</li>
-      <%= render 'shared/sidebar_dropdown', title: 'Resurse', icon: 'fas fa-file-alt' do %>
+      <li class="menu-header">Aplicație</li>
+
+      <li class="<%= active_nav_item('home', 'about') %>">
+        <%= link_to about_path, class: "nav-link" do %>
+          <i class="fab fa-info"></i> <span>Despre aplicație</span>
+        <% end %>
+      </li>
+
+<!--       <#= render 'shared/sidebar_dropdown', title: 'Resurse', icon: 'fas fa-file-alt' do #>
       
-<!--         <li class="<%= active_nav_item('students', crud_actions) %>">
+        <li class="<%= active_nav_item('students', crud_actions) %>">
           <%= link_to 'Students', students_path, class: 'nav-link' %>
-        </li> -->
+        </li>
       
-      <% end %>
+      <# end #> -->
     </ul>
   </aside>
 </div>

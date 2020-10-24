@@ -20,22 +20,23 @@
         </div>
       </div>
       <div class="card-body" data-controller="infinite-page">
-        <!--
-        <#= search_form_for @search, remote: true, data: { controller: 'turbolinks-form' }, html: { class: 'form-row' } do |f| #>
+        
+        <%= search_form_for @search, remote: true, data: { controller: 'turbolinks-form' }, html: { class: 'form-row' } do |f| %>
           <div class="form-group col-sm-10">
-            <#= f.text_field :name_cont, class: 'form-control m-input m-input--solid', placeholder: 'Name' #>
+            <%= f.text_field :name_cont, class: 'form-control m-input m-input--solid', placeholder: 'Caută după nume...' %>
           </div>
           <div class="form-group col-sm-2 text-right">
-            <#= f.button icon('fas fa-search', 'Search'), name: nil, class: 'btn btn-icon icon-left btn-primary' #>
+            <%= f.button icon('fas fa-search', 'Caută'), name: nil, class: 'btn btn-icon icon-left btn-primary' %>
           </div>
-        <# end #>
-        -->
+        <% end %>
+        
         <div class="table-responsive">
           <table class="table table-striped table-md">
             <thead>
               <tr>
                 <th><%= sort_link_turbo(@search, :name, "Nume") %></th>
                 <th><%= sort_link_turbo(@search, :students, "Elevi") %></th>
+                <th><%= sort_link_turbo(@search, :volunteers, "Voluntari") %></th>
                 <th>Acțiuni</th>
               </tr>
             </thead>
@@ -44,6 +45,7 @@
                 <tr data-target="infinite-page.item">
                   <td><%= link_to grade.name, grade, class: "badge badge-primary" %></td>
                   <td><%= grade.students.size %></td>
+                  <td><%= link_to grade.volunteers.size, grade, class: "badge badge-success" %></td>
                   <td>
                     <%= link_to icon('fas fa-eye'), grade, title: 'Vizualizează', class: 'btn btn-icon btn-sm btn-info mr-1' %>
                     <%= link_to icon('fas fa-edit'), edit_grade_path(grade), title: 'Modifică', class: 'btn btn-icon btn-sm btn-warning mr-1' %>

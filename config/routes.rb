@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   put '/students/change_money', to: 'students#change_money', as: 'change_money'
   resources :students
   resources :grades
+  get '/about', to: 'home#about', as: 'about'
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
   root 'home#index'
   mount Sidekiq::Web => '/sidekiq'

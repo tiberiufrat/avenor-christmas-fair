@@ -26,45 +26,74 @@
       </div>
 
       <div class="row">
-
-        <div class="col-12 col-md-6 col-lg-4">
-          <div class="card card-primary">
-            <div class="card-header">
-              <h4>Elevi</h4>
-              <div class="card-header-action">
-                <%= link_to("Vezi elevii", students_path, class: "btn btn-primary") %>
+        <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+          <%= link_to students_path do %>
+            <div class="card card-statistic-1">
+              <div class="card-icon bg-primary">
+                <i class="fas fa-user-graduate"></i>
+              </div>
+              <div class="card-wrap">
+                <div class="card-header">
+                  <h4>Elevi</h4>
+                </div>
+                <div class="card-body">
+                  <%= Student.all.size %>
+                </div>
               </div>
             </div>
-            <div class="card-body">
-              <h1><%= Student.all.size %> <small class="text-muted"> elevi</small></h1>
-            </div>
-          </div>
+          <% end %>
         </div>
-
-        <div class="col-12 col-md-6 col-lg-4">
-          <div class="card card-warning">
-            <div class="card-header">
-              <h4>Voluntari</h4>
-              <div class="card-header-action">
-                <%= link_to("Vezi voluntarii", volunteers_path, class: "btn btn-warning") %>
+        <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+          <%= link_to volunteers_path do %>
+            <div class="card card-statistic-1">
+              <div class="card-icon bg-success">
+                <i class="fab fa-person-sign"></i>
+              </div>
+              <div class="card-wrap">
+                <div class="card-header">
+                  <h4>Voluntari</h4>
+                </div>
+                <div class="card-body">
+                  <%= Volunteer.all.size %>
+                </div>
               </div>
             </div>
-            <div class="card-body">
-              <h1><%= Volunteer.all.size %> <small class="text-muted"> voluntari</small></h1>
-            </div>
-          </div>
+          <% end %>
         </div>
-
-        <div class="col-12 col-md-6 col-lg-4">
-          <div class="card card-danger">
-            <div class="card-header">
-              <h4>Card Header</h4>
+        <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+          <%= link_to stands_path do %>
+            <div class="card card-statistic-1">
+              <div class="card-icon bg-warning">
+                <i class="fab fa-shopping-cart"></i>
+              </div>
+              <div class="card-wrap">
+                <div class="card-header">
+                  <h4>Standuri</h4>
+                </div>
+                <div class="card-body">
+                  <%= Stand.all.size %>
+                </div>
+              </div>
             </div>
-            <div class="card-body">
-              <p>Card body</p>
-            </div>
-          </div>
+          <% end %>
         </div>
+        <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+          <%= link_to departments_path do %>
+            <div class="card card-statistic-1">
+              <div class="card-icon bg-danger">
+                <i class="fab fa-building"></i>
+              </div>
+              <div class="card-wrap">
+                <div class="card-header">
+                  <h4>Departamente</h4>
+                </div>
+                <div class="card-body">
+                  <%= Department.all.size %>
+                </div>
+              </div>
+            </div>
+          <% end %>
+        </div>                  
       </div>
 
   <% end %>
