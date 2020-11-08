@@ -18,6 +18,8 @@ Object.defineProperties(window, { $: descriptor, jQuery: descriptor })
 require("bootstrap")
 require("jquery.nicescroll")
 
+require("@nguyenthanh1995/fontawesomepro/js/all")
+
 require("select2")
 require("cleave.js")
 require("waypoints/lib/noframework.waypoints")

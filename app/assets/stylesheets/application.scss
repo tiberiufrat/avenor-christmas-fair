@@ -12,6 +12,7 @@
  *
  *= require bootstrap/scss/bootstrap
  *= require fontawesome/rails
+ *= require @nguyenthanh1995/fontawesomepro/css/all
  *= require select2/dist/css/select2
  *= require izitoast/dist/css/iziToast
  *= require stisla/style
@@ -20,6 +21,29 @@
  *= stub mobile
  *= require_self
  */
+$fa-font-path: '@nguyenthanh1995/fontawesomepro/webfonts';
+@import '@nguyenthanh1995/fontawesomepro/scss/fontawesome';
+@import '@nguyenthanh1995/fontawesomepro/scss/solid';
+@import '@nguyenthanh1995/fontawesomepro/scss/regular';
+@import '@nguyenthanh1995/fontawesomepro/scss/brands';
+@import '@nguyenthanh1995/fontawesomepro/scss/light';
+@import '@nguyenthanh1995/fontawesomepro/scss/duotone';
+@import '@nguyenthanh1995/fontawesomepro/scss/v4-shims';
+
+.svg-inline--fa {
+  margin-right: 5px;
+  margin-left: 5px;
+}
+
+a.nav-link svg.svg-inline--fa {
+  box-sizing: border-box;
+  width: 25px;
+  margin-right: 12px;
+}
+
+.navbar-nav .nav-link > svg.svg-inline--fa {
+  margin: 0;
+}
 
 .turbolinks-progress-bar {
   background-color: #fd7e14;
