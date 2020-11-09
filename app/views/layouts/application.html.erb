@@ -12,6 +12,7 @@
     <%= stylesheet_link_tag 'mobile', media: 'all', 'data-turbolinks-track': 'reload' if platform.mobile_app? %>
 
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_pack_tag 'fullcalendar', 'data-turbolinks-track': 'reload' %>
   </head>
 
   <body>
@@ -27,5 +28,12 @@
       </div>
     </div>
     <%= render 'shared/toastr' %>
+
+    <div id="modal-window" class="modal hide fade" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content"></div>
+      </div>
+    </div>
+    
   </body>
 </html>

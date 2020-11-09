@@ -1,25 +1,25 @@
 <section class="section">
   <div class="section-header d-mobile-none">
-    <h1>Stands</h1>
+    <h1>Evenimente</h1>
     <div class="section-header-breadcrumb">
       <div class="breadcrumb-item"><%= link_to 'Panou de control', root_path %></div>
-      <div class="breadcrumb-item"><%= link_to 'Stands', stands_path %></div>
-      <div class="breadcrumb-item">Editing Stand</div>
+      <div class="breadcrumb-item"><%= link_to 'Events', events_path %></div>
+      <div class="breadcrumb-item">Editing Event</div>
     </div>
   </div>
   <div class="section-body">
     <div class="card">
       <div class="card-header">
-        <h4>Editing Stand</h4>
+        <h4>Editing Event</h4>
       </div>
       <div class="card-body">
-        <%= render 'form', stand: @stand %>
+        <%= render 'form', event: @event %>
       </div>
     </div>
   </div>
 </section>
 
-<%= link_to icon('fas fa-eye', 'Show'), @stand, data: { turbolinks_action: 'replace' }, class: 'btn btn-icon icon-left btn-info' %>
+<%= link_to icon('fas fa-eye', 'Show'), @event, data: { turbolinks_action: 'replace' }, class: 'btn btn-icon icon-left btn-info' %>
 <%= link_to icon('fas fa-arrow-left', 'Back'), 'javascript:history.back()', class: 'btn btn-icon icon-left btn-secondary d-mobile-none' %>
 
-<% content_for(:page_title, 'Editing Stand') %>
+<% content_for(:page_title, 'Editing Event') %>

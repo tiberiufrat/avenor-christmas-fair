@@ -1,0 +1,77 @@
+<div class="modal-header">
+  <h4 class="modal-title" id="myModalLabel">Adaugă un eveniment</h4>
+  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+	  <span aria-hidden="true">&times;</span>
+	</button>
+</div>
+
+<%= form_with(model: @event, data: { controller: 'validation' }) do |form| %>
+	<div class="modal-body">
+	  <div class="form-group">
+	    <%= form.label :title %>
+	    <%= form.text_field :title, class: 'form-control' %>
+	  </div>
+	  <div class="form-group">
+	    <%= form.label :color %>
+	    <%# form.color_field :color, class: 'form-control' %>
+
+
+	    <div class="selectgroup selectgroup-pills">
+        <label class="selectgroup-item">
+        	<%= form.radio_button :color, value: "", class: "selectgroup-input" %>
+          <span class="selectgroup-button">HTML</span>
+        </label>
+        <label class="selectgroup-item">
+          <%= form.radio_button :color, value: "", class: "selectgroup-input" %>
+          <span class="selectgroup-button">CSS</span>
+        </label>
+        <label class="selectgroup-item">
+          <%= form.radio_button :color, value: "", class: "selectgroup-input" %>
+          <span class="selectgroup-button">PHP</span>
+        </label>
+        <label class="selectgroup-item">
+          <%= form.radio_button :color, value: "", class: "selectgroup-input" %>
+          <span class="selectgroup-button">JavaScript</span>
+        </label>
+        <label class="selectgroup-item">
+          <%= form.radio_button :color, value: "", class: "selectgroup-input" %>
+          <span class="selectgroup-button">Ruby</span>
+        </label>
+        <label class="selectgroup-item">
+          <%= form.radio_button :color, value: "", class: "selectgroup-input" %>
+          <span class="selectgroup-button">Ruby</span>
+        </label>
+        <label class="selectgroup-item">
+          <%= form.radio_button :color, value: "", class: "selectgroup-input" %>
+          <span class="selectgroup-button">C++</span>
+        </label>
+      </div>
+
+
+	  </div>
+	  <div class="form-group">
+	    <%= form.label :start %>
+	    <%= form.text_field :start, value: l(@event.start), class: 'form-control', data: { controller: 'datetime' } %>
+	  </div>
+	  <div class="form-group">
+	    <%= form.label :end %>
+	    <%= form.text_field :end, value: l(@event.end), class: 'form-control', data: { controller: 'datetime' } %>
+	  </div>
+	  <div class="form-group">
+	    <div class="custom-control custom-checkbox">
+	      <%= form.check_box :all_day, class: 'custom-control-input' %>
+	      <%= form.label :all_day, class: 'custom-control-label' %>
+	    </div>
+	  </div>
+	  <div class="form-group">
+	    <%= form.label :admin_id %>
+	    <%= form.text_field :admin_id, value: current_admin.name, class: "form-control", readonly: true %>
+	    <%# form.collection_select(:admin_id, Admin.all, :id, :to_s, {}, { class: 'form-control', readonly: true, data: { controller: 'select' } }) %>
+	  </div>
+	</div>
+
+	<div class="modal-footer">
+	  <%= form.submit class: 'btn btn-primary' %>
+	  <button type="button" class="btn btn-secondary" data-dismiss="modal">Închide</button>
+	</div>
+<% end %>

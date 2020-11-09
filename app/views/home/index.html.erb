@@ -15,17 +15,17 @@
     </div>
 
   <% else %>
-      <div class="hero text-white hero-bg-image hero-bg-parallax mb-4" style="background-image: url('<%= image_path "unsplash/andre-benz-1214056-unsplash.jpg" %>');">
-        <div class="hero-inner">
-          <h2>Bine ai venit, <%= current_admin.name %></h2>
-          <p class="lead">Accesează resursele din bara laterală sau efectuează o căutare.</p>
-          <div class="mt-4">
-            <%= link_to(icon('fas fa-user', ' Modificare detalii cont'), edit_admin_registration_path, class: "btn btn-outline-white btn-lg btn-icon icon-left") %>
-          </div>
+    <div class="hero text-white hero-bg-image hero-bg-parallax mb-4" style="background-image: url('<%= image_path "unsplash/andre-benz-1214056-unsplash.jpg" %>');">
+      <div class="hero-inner">
+        <h2>Bine ai venit, <%= current_admin.name %></h2>
+        <p class="lead">Accesează resursele din bara laterală sau efectuează o căutare.</p>
+        <div class="mt-4">
+          <%= link_to(icon('fas fa-user', ' Modificare detalii cont'), edit_admin_registration_path, class: "btn btn-outline-white btn-lg btn-icon icon-left") %>
         </div>
       </div>
-
-      <div class="row">
+    </div>
+    <div class="col-12 p-0">
+      <div class="row" id="data-presentation">
         <div class="col-lg-3 col-md-6 col-sm-6 col-12">
           <%= link_to students_path do %>
             <div class="card card-statistic-1">
@@ -47,7 +47,7 @@
           <%= link_to volunteers_path do %>
             <div class="card card-statistic-1">
               <div class="card-icon bg-success">
-                <i class="fab fa-person-sign"></i>
+                <i class="fas fa-person-sign"></i>
               </div>
               <div class="card-wrap">
                 <div class="card-header">
@@ -64,7 +64,7 @@
           <%= link_to stands_path do %>
             <div class="card card-statistic-1">
               <div class="card-icon bg-warning">
-                <i class="fab fa-shopping-cart"></i>
+                <i class="fas fa-shopping-cart"></i>
               </div>
               <div class="card-wrap">
                 <div class="card-header">
@@ -81,7 +81,7 @@
           <%= link_to departments_path do %>
             <div class="card card-statistic-1">
               <div class="card-icon bg-danger">
-                <i class="fab fa-building"></i>
+                <i class="fas fa-building"></i>
               </div>
               <div class="card-wrap">
                 <div class="card-header">
@@ -95,6 +95,47 @@
           <% end %>
         </div>                  
       </div>
+    </div>
+
+    <div class="row">
+
+      <div class="col-xl-9 col-12">
+        <div class="card w-100 h-100">
+          <div class="card-header">
+            <h4>Calendar</h4>
+          </div>
+          <div class="card-body">
+            <div class="fc-overflow">
+              <div id="calendar"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-xl-3 col-12">
+        <div class="card h-100">
+          <div class="card-header">
+            <h4>Evenimentele mele</h4>
+          </div>
+          <div class="card-body">
+            <% if current_admin.events.empty? %>
+              <div class="empty-state h-100" style="padding: 10%">
+                <div class="empty-state-icon">
+                  <i class="fas fa-question"></i>
+                </div>
+                <h2>Încă nu ai creat niciun eveniment</h2>
+                <p class="lead">
+                  Nu ai creat niciun eveniment până acum. Pentru a crea un eveniment, selectează datele respective din calendar și introdu detaliile în casetă.
+                </p>
+                <a href="#" class="mt-4 bb">Ajutor</a>
+              </div>
+            <% end %>
+
+          </div>
+        </div>
+      </div>
+
+    </div>
 
   <% end %>
 

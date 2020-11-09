@@ -45,6 +45,17 @@ a.nav-link svg.svg-inline--fa {
   margin: 0;
 }
 
+#data-presentation .svg-inline--fa path,
+.empty-state-icon .svg-inline--fa path {
+  color: #fff;
+}
+
+#data-presentation .svg-inline--fa,
+.empty-state-icon .svg-inline--fa {
+  height: 20px;
+  width: 30px;
+}
+
 .turbolinks-progress-bar {
   background-color: #fd7e14;
 }
