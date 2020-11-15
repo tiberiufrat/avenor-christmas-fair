@@ -13,6 +13,25 @@
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= stylesheet_link_tag 'mobile', media: 'all', 'data-turbolinks-track': 'reload' if platform.mobile_app? %>
     <script src="http://malsup.github.com/jquery.form.js"></script>
+    <script>
+      var reloadWithTurbolinks = (function () {
+        var scrollPosition
+
+        function reload () {
+          scrollPosition = [window.scrollX, window.scrollY]
+          Turbolinks.visit(window.location.toString(), { action: 'replace' })
+        }
+
+        document.addEventListener('turbolinks:load', function () {
+          if (scrollPosition) {
+            window.scrollTo.apply(window, scrollPosition)
+            scrollPosition = null
+          }
+        })
+
+        return reload
+      })()
+    </script>
   </head>
 
   <body>

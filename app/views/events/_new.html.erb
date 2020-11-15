@@ -5,7 +5,7 @@
 	</button>
 </div>
 
-<%= form_with(model: @event, data: { controller: 'validation' }) do |form| %>
+<%= form_with(model: @event, id: 'edit_event_form', data: { controller: 'validation' }) do |form| %>
 	<div class="modal-body">
 	  <div class="form-group">
 	    <%= form.label :title %>
@@ -13,8 +13,6 @@
 	  </div>
 	  <div class="form-group">
 	    <%= form.label :color %>
-	    <%# form.color_field :color, class: 'form-control' %>
-
 	    <div class="selectgroup selectgroup-pills">
         <div class="row gutters-xs">
           <div class="col-auto">
@@ -62,7 +60,7 @@
 	    <%= form.label :start %>
 	    <%= form.text_field :start, class: 'form-control', id: 'start_date_field', data: { controller: 'datetime' } %>
 	  </div>
-	  <div class="form-group">
+	  <div class="form-group" id="end_date_form_group">
 	    <%= form.label :end %>
 	    <%= form.text_field :end, class: 'form-control', id: 'end_date_field', data: { controller: 'datetime' } %>
 	  </div>
@@ -89,3 +87,20 @@
 	  <button type="button" class="btn btn-secondary" data-dismiss="modal">Închide</button>
 	</div>
 <% end %>
+
+<script>
+  // If All day, automatically hide the end field
+  if ($('#event_all_day').is(':checked')) {
+    $('#end_date_form_group').hide()
+  }
+
+  // Hide end date if all day
+  $('#event_all_day').change(() => {
+    if ( $('#event_all_day').is(':checked') ) {
+      $('#end_date_form_group').hide('500')
+    } else {
+      $('#end_date_field').val("")
+      $('#end_date_form_group').show('500')
+    }
+  })
+</script>

@@ -12,7 +12,7 @@
       <div class="card-header">
         <h4>Lista evenimentelor</h4>
         <div class="card-header-action">
-          <%= link_to icon('fas fa-plus', 'Adaugă un eveniment'), new_event_path, class: 'btn btn-icon icon-left btn-primary', remote: :true, 'data-toggle': 'modal', 'data-target': '#modal-window' %>
+          <%= link_to icon('fas fa-plus', 'Adaugă un eveniment'), '', class: 'btn btn-icon icon-left btn-primary', id: 'add-event-button', remote: :true, 'data-toggle': 'modal', 'data-target': '#modal-window' %>
           <%= render 'shared/card_dropdown' do %>
             <%= link_to icon('fas fa-download', 'Exporă datele'), events_path(format: :csv, q: request.params[:q]), class: 'dropdown-item has-icon' %>
             <%= link_to icon('fas fa-print', 'Tipărește pagina'), 'javascript:window.print()', class: 'dropdown-item has-icon' %>
@@ -46,16 +46,19 @@
             <tbody data-target="infinite-page.container">
               <% @events.each do |event| %>
                 <tr data-target="infinite-page.item">
-                  <td><%= link_to event.title, event, class: "badge badge-light" %></td>
+                  <td><%= link_to event.title, root_path(anchor: 'calendar'), class: "badge badge-light event-name", id: event.start.iso8601 %></td>
                   <td><span class="colorinput-color" style="background-color: <%= event.color %>"></span></td>
-                  <td><%= event.start_datetime %></td>
-                  <td><%= event.end_datetime %></td>
+                  <% unless event.all_day %>
+                    <td><%= event.start_datetime %></td>
+                    <td><%= event.end_datetime %></td>
+                  <% else %>
+                    <td colspan="2"><%= event.start_date %></td>
+                  <% end %>
                   <td><%= event.all_day ? '<i class="fas fa-check-circle text-success" style="font-size: 18px"></i>'.html_safe : '<i class="fas fa-times-circle" style="font-size: 18px"></i>'.html_safe %></td>
                   <td><%= event.admin.name %></td>
                   <td>
-                    <%= link_to icon('fas fa-eye'), event, title: 'Show it', class: 'btn btn-icon btn-sm btn-info mr-1' %>
                     <%= link_to icon('fas fa-edit'), edit_event_path(event), title: 'Edit it', class: 'btn btn-icon btn-sm btn-warning mr-1' %>
-                    <%= link_to icon('fas fa-trash'), event, title: 'Destroy it', class: 'btn btn-icon btn-sm btn-danger', method: :delete, data: { confirm: 'Are you sure?', remote: true } %>
+                    <%= link_to icon('fas fa-trash'), event, title: 'Șterge', class: 'btn btn-danger btn-icon btn-sm', method: :delete, data: { confirm_swal: 'Ești sigur că vrei să ștergi evenimentul?', remote: true, method: :delete } %>
                   </td>
                 </tr>
               <% end %>
@@ -68,5 +71,16 @@
   </div>
 
 </section>
+
+<script>
+    $('.event-name').click((e) => {
+      localStorage.setItem("fcDefaultView", "timeGridWeek")
+      localStorage.setItem("fcStartDate", e.target.id)
+    })
+
+    $('#add-event-button').click(() => {
+      $.getScript('/events/new')
+    })
+</script>
 
 <% content_for(:page_title, 'Lista evenimentelor') %>

@@ -34,12 +34,12 @@ document.addEventListener('turbolinks:load', function() {
       meridiem: false
     },
     datesSet: (info) => {
-      console.log(info)
       localStorage.setItem("fcDefaultView", info.view.type);
-      localStorage.setItem("fcStartDate", info.startStr);
+      localStorage.setItem("fcStartDate", moment(info.view.currentStart).format());
     },
     initialView: (localStorage.getItem("fcDefaultView") != null ? localStorage.getItem("fcDefaultView") : "dayGridMonth"),
-    initialDate: (localStorage.getItem("fcStartDate") != null ? localStorage.getItem("fcStartDate") : Date.now()),
+    initialDate: (localStorage.getItem("fcStartDate") != null ? localStorage.getItem("fcStartDate") : moment(new Date).format()),
+
     select: (info) => {
       $.getScript('/events/new', () => {
         $('#start_date_field').val(moment(info.start).format('YYYY/MM/DD HH:mm'));
@@ -60,6 +60,7 @@ document.addEventListener('turbolinks:load', function() {
         },
       }
     ],
+
     eventDrop: (info) => {
       let eventData = {
         event: {
