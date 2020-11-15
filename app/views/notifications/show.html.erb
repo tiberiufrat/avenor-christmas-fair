@@ -1,0 +1,37 @@
+<section class="section">
+  <div class="section-header d-mobile-none">
+    <h1>Notifications</h1>
+    <div class="section-header-breadcrumb">
+      <div class="breadcrumb-item"><%= link_to 'Dashboard', root_path %></div>
+      <div class="breadcrumb-item"><%= link_to 'Notifications', notifications_path %></div>
+      <div class="breadcrumb-item">Show Notification</div>
+    </div>
+  </div>
+
+  <div class="section-body">
+    <div class="card">
+      <div class="card-header">
+        <h4>Show Notification</h4>
+      </div>
+      <div class="card-body">
+        <dl class="row">
+          <dt class="col-sm-3">Admin:</dt>
+          <dd class="col-sm-9"><%= @notification.admin %></dd>
+          <dt class="col-sm-3">Text:</dt>
+          <dd class="col-sm-9"><%= @notification.text %></dd>
+          <dt class="col-sm-3">Color:</dt>
+          <dd class="col-sm-9"><%= @notification.color %></dd>
+          <dt class="col-sm-3">Icon:</dt>
+          <dd class="col-sm-9"><%= @notification.icon %></dd>
+          <dt class="col-sm-3">Link:</dt>
+          <dd class="col-sm-9"><%= @notification.link %></dd>
+        </dl>
+      </div>
+    </div>
+  </div>
+</section>
+
+<%= link_to icon('fas fa-edit', 'Edit'), edit_notification_path(@notification), data: { turbolinks_action: 'replace' }, class: 'btn btn btn-icon icon-left btn-warning' %>
+<%= link_to icon('fas fa-arrow-left', 'Back'), 'javascript:history.back()', class: 'btn btn-icon icon-left btn-secondary d-mobile-none' %>
+
+<% content_for(:page_title, 'Show Notification') %>
