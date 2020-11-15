@@ -2,20 +2,20 @@
   <div class="section-header d-mobile-none">
     <h1><%= plural_table_name.titleize %></h1>
     <div class="section-header-breadcrumb">
-      <div class="breadcrumb-item"><%%= link_to 'Dashboard', root_path %></div>
-      <div class="breadcrumb-item">List of <%= plural_table_name.titleize %></div>
+      <div class="breadcrumb-item"><%%= link_to 'Panou de control', root_path %></div>
+      <div class="breadcrumb-item">Lista <%= plural_table_name.titleize %></div>
     </div>
   </div>
 
   <div class="section-body">
     <div class="card">
       <div class="card-header">
-        <h4>List of <%= plural_table_name.titleize %></h4>
+        <h4>Lista <%= plural_table_name.titleize %></h4>
         <div class="card-header-action">
-          <%%= link_to icon('fas fa-plus', 'New <%= singular_table_name.titleize %>'), new_<%= singular_route_name %>_path, class: 'btn btn-icon icon-left btn-primary' %>
+          <%%= link_to icon('fas fa-plus', 'Adaugă <%= singular_table_name.titleize %>'), new_<%= singular_route_name %>_path, class: 'btn btn-icon icon-left btn-primary' %>
           <%%= render 'shared/card_dropdown' do %>
-            <%%= link_to icon('fas fa-download', 'Export Data'), <%= plural_table_name %>_path(format: :csv, q: request.params[:q]), class: 'dropdown-item has-icon' %>
-            <%%= link_to icon('fas fa-print', 'Print Page'), 'javascript:window.print()', class: 'dropdown-item has-icon' %>
+            <%%= link_to icon('fas fa-download', 'Exportă datele'), <%= plural_table_name %>_path(format: :csv, q: request.params[:q]), class: 'dropdown-item has-icon' %>
+            <%%= link_to icon('fas fa-print', 'Tipărește pagina'), 'javascript:window.print()', class: 'dropdown-item has-icon' %>
           <%% end %>
         </div>
       </div>
@@ -37,7 +37,7 @@
 <% attributes.each do |attribute| -%>
                 <th><%%= sort_link_turbo(@search, :<%= attribute.name %>) %></th>
 <% end -%>
-                <th>Actions</th>
+                <th>Acțiuni</th>
               </tr>
             </thead>
             <tbody data-target="infinite-page.container">
@@ -57,19 +57,19 @@
 <% end -%>
 <% end -%>
                   <td>
-                    <%%= link_to icon('fas fa-eye'), <%= model_resource_name %>, title: 'Show it', class: 'btn btn-icon btn-sm btn-info mr-1' %>
-                    <%%= link_to icon('fas fa-edit'), edit_<%= singular_route_name %>_path(<%= singular_table_name %>), title: 'Edit it', class: 'btn btn-icon btn-sm btn-warning mr-1' %>
-                    <%%= link_to icon('fas fa-trash'), <%= model_resource_name %>, title: 'Destroy it', class: 'btn btn-icon btn-sm btn-danger', method: :delete, data: { confirm: 'Are you sure?', remote: true } %>
+                    <%%= link_to icon('fas fa-eye'), <%= model_resource_name %>, title: 'Vizualizează', class: 'btn btn-icon btn-sm btn-info mr-1' %>
+                    <%%= link_to icon('fas fa-edit'), edit_<%= singular_route_name %>_path(<%= singular_table_name %>), title: 'Modifică', class: 'btn btn-icon btn-sm btn-warning mr-1' %>
+                    <%%= link_to icon('fas fa-trash'), <%= model_resource_name %>, title: 'Șterge', class: 'btn btn-icon btn-sm btn-danger', method: :delete, data: { confirm: 'Ești sigur că dorești să îl ștergi?', remote: true } %>
                   </td>
                 </tr>
               <%% end %>
             </tbody>
           </table>
-          <%%= link_to 'Next page', <%= index_helper %>_path(page: @page.next_number, q: request.params[:q]), data: { target: 'infinite-page.more' } unless @page.last? %>
+          <%%= link_to 'Pagina următoare', <%= index_helper %>_path(page: @page.next_number, q: request.params[:q]), data: { target: 'infinite-page.more' } unless @page.last? %>
         </div>
       </div>
     </div>
   </div>
 </section>
 
-<%% content_for(:page_title, 'List of <%= plural_table_name.titleize %>') %>
+<%% content_for(:page_title, 'Lista <%= plural_table_name.titleize %>') %>

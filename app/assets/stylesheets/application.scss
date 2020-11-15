@@ -30,6 +30,10 @@ $fa-font-path: '@nguyenthanh1995/fontawesomepro/webfonts';
 @import '@nguyenthanh1995/fontawesomepro/scss/duotone';
 @import '@nguyenthanh1995/fontawesomepro/scss/v4-shims';
 
+.main-content {
+  padding-bottom: 30px;
+}
+
 .svg-inline--fa {
   margin-right: 5px;
   margin-left: 5px;
@@ -43,6 +47,17 @@ a.nav-link svg.svg-inline--fa {
 
 .navbar-nav .nav-link > svg.svg-inline--fa {
   margin: 0;
+}
+
+#data-presentation .svg-inline--fa path,
+.empty-state-icon .svg-inline--fa path {
+  color: #fff;
+}
+
+#data-presentation .svg-inline--fa,
+.empty-state-icon .svg-inline--fa {
+  height: 20px;
+  width: 30px;
 }
 
 .turbolinks-progress-bar {

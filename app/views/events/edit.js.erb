@@ -1,0 +1,10 @@
+$("#modal-window").find(".modal-content").html("<%= j (render 'edit') %>");
+
+$('#modal-window').modal('show');
+
+$('#modal-submit').on('click', function() {
+  $('#modal-window').modal('hide');
+  const event = new Event('modal-closed')
+});
+
+$('#modal-window').on( 'hide.bs.modal', () => setTimeout(reloadWithTurbolinks, 500) )

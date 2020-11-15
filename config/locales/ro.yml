@@ -9,6 +9,8 @@ ro:
     job: Atribuție
     department: Departament
     stand: Stand
+    event: Eveniment
+    admin: Creator
   activerecord:
     models:
       admin: 
@@ -29,15 +31,25 @@ ro:
       volunteer:
         one: Voluntar
         other: Voluntari
+      event:
+        one: Eveniment
+        other: Evenimente
     attributes:
       admin:
         password: Parola
         email: Adresa de e-mail
         name: Numele
       volunteer:
+      event:
+        title: Denumire
+        start: Început
+        end: Sfârșit
+        color: Culoare
+        all_day: Toată ziua
+        admin: Creator
     errors:
       messages:
-        record_invalid: Validare nereuşită %{errors}
+        record_invalid: Validare nereușită %{errors}
   date:
     abbr_day_names:
     - dum
@@ -203,7 +215,7 @@ ro:
         units:
           billion: miliard
           million: milion
-          quadrillion: quadrilion
+          quadrillion: catralion
           thousand: mie
           trillion: trilion
           unit: ''

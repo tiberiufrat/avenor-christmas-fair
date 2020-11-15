@@ -1,0 +1,39 @@
+<section class="section">
+  <div class="section-header d-mobile-none">
+    <h1>Evenimente</h1>
+    <div class="section-header-breadcrumb">
+      <div class="breadcrumb-item"><%= link_to 'Panou de control', root_path %></div>
+      <div class="breadcrumb-item"><%= link_to 'Events', events_path %></div>
+      <div class="breadcrumb-item">Show Event</div>
+    </div>
+  </div>
+
+  <div class="section-body">
+    <div class="card">
+      <div class="card-header">
+        <h4>Show Event</h4>
+      </div>
+      <div class="card-body">
+        <dl class="row">
+          <dt class="col-sm-3">Title:</dt>
+          <dd class="col-sm-9"><%= @event.title %></dd>
+          <dt class="col-sm-3">Color:</dt>
+          <dd class="col-sm-9"><%= @event.color %></dd>
+          <dt class="col-sm-3">Start:</dt>
+          <dd class="col-sm-9"><%= l(@event.start) %></dd>
+          <dt class="col-sm-3">End:</dt>
+          <dd class="col-sm-9"><%= l(@event.end) %></dd>
+          <dt class="col-sm-3">All day:</dt>
+          <dd class="col-sm-9"><%= t(@event.all_day) %></dd>
+          <dt class="col-sm-3">Admin:</dt>
+          <dd class="col-sm-9"><%= @event.admin %></dd>
+        </dl>
+      </div>
+    </div>
+  </div>
+</section>
+
+<%= link_to icon('fas fa-edit', 'Edit'), edit_event_path(@event), data: { turbolinks_action: 'replace' }, class: 'btn btn btn-icon icon-left btn-warning' %>
+<%= link_to icon('fas fa-arrow-left', 'Back'), 'javascript:history.back()', class: 'btn btn-icon icon-left btn-secondary d-mobile-none' %>
+
+<% content_for(:page_title, 'Show Event') %>

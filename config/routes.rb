@@ -1,6 +1,7 @@
 require 'sidekiq/web'
 
 Rails.application.routes.draw do
+  resources :events
   resources :volunteers
   resources :stands
   resources :departments

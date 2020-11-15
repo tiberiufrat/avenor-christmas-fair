@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_10_18_182038) do
+ActiveRecord::Schema.define(version: 2020_11_08_182835) do
 
   create_table "admins", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -36,6 +36,18 @@ ActiveRecord::Schema.define(version: 2020_10_18_182038) do
     t.integer "department_id"
     t.index ["department_id"], name: "index_departments_volunteers_on_department_id"
     t.index ["volunteer_id"], name: "index_departments_volunteers_on_volunteer_id"
+  end
+
+  create_table "events", force: :cascade do |t|
+    t.string "title"
+    t.string "color"
+    t.datetime "start"
+    t.datetime "end"
+    t.boolean "all_day"
+    t.integer "admin_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["admin_id"], name: "index_events_on_admin_id"
   end
 
   create_table "grades", force: :cascade do |t|
@@ -91,6 +103,7 @@ ActiveRecord::Schema.define(version: 2020_10_18_182038) do
     t.index ["grade_id"], name: "index_volunteers_on_grade_id"
   end
 
+  add_foreign_key "events", "admins"
   add_foreign_key "students", "grades"
   add_foreign_key "volunteers", "grades"
 end
