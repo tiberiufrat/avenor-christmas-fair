@@ -25,11 +25,17 @@ class EventsController < ApplicationController
   end
 
   def edit
+    respond_to do |format|
+      format.html
+      format.js
+    end
   end
 
   def create
     @event = Event.new(event_params)
     @event.admin ||= current_admin
+    @event.all_day ||= false
+    @event.end = nil if @event.all_day
     @event.save!
 
     respond_to do |format|
@@ -41,6 +47,12 @@ class EventsController < ApplicationController
 
   def update
     @event.update!(event_params)
+    @event.end = nil if @event.all_day
+    if @event.end.nil? && !@event.all_day
+      @event.end = @event.start + 1.hour
+    end
+    @event.save
+
     respond_to do |format|
       format.html { redirect_to @event, notice: 'Event was successfully updated.' }
       format.json { render :show }
@@ -58,11 +70,12 @@ class EventsController < ApplicationController
   end
 
   private
-    def set_event
-      @event = Event.find(params[:id])
-    end
 
-    def event_params
-      params.require(:event).permit(:title, :color, :start, :date_range, :end, :all_day, :admin_id)
-    end
+  def set_event
+    @event = Event.find(params[:id])
+  end
+
+  def event_params
+    params.require(:event).permit(:id, :title, :color, :start, :date_range, :end, :all_day, :admin_id)
+  end
 end

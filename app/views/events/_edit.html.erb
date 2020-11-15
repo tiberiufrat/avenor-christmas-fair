@@ -1,16 +1,16 @@
 <div class="modal-header">
-  <h4 class="modal-title" id="myModalLabel">Adaugă un eveniment</h4>
+  <h4 class="modal-title" id="modalTitle" contenteditable="true"><%= @event.title %></h4>
   <button type="button" class="close" data-dismiss="modal" aria-label="Close">
 	  <span aria-hidden="true">&times;</span>
 	</button>
 </div>
 
-<%= form_with(model: @event, data: { controller: 'validation' }) do |form| %>
+<%= form_with(model: @event, id: 'edit_event_form', data: { controller: 'validation' }) do |form| %>
 	<div class="modal-body">
-	  <div class="form-group">
-	    <%= form.label :title %>
-	    <%= form.text_field :title, class: 'form-control' %>
-	  </div>
+	  <!-- <div class="form-group"> -->
+	    <%# form.label :title %>
+	    <%= form.hidden_field :title, class: 'form-control', id: 'title-hidden-field' %>
+	  <!-- </div> -->
 	  <div class="form-group">
 	    <%= form.label :color %>
 	    <%# form.color_field :color, class: 'form-control' %>
@@ -60,11 +60,11 @@
 	  </div>
 	  <div class="form-group">
 	    <%= form.label :start %>
-	    <%= form.text_field :start, class: 'form-control', id: 'start_date_field', data: { controller: 'datetime' } %>
+	    <%= form.text_field :start, value: @event.start.strftime('%Y/%m/%d %H:%M'), class: 'form-control', id: 'start_date_field', data: { controller: 'datetime' } %>
 	  </div>
-	  <div class="form-group">
+	  <div class="form-group" id="end_date_form_group">
 	    <%= form.label :end %>
-	    <%= form.text_field :end, class: 'form-control', id: 'end_date_field', data: { controller: 'datetime' } %>
+	    <%= form.text_field :end, value: (@event.end ? @event.end.strftime('%Y/%m/%d %H:%M') : ""), class: 'form-control', id: 'end_date_field', data: { controller: 'datetime' } %>
 	  </div>
 	  <div class="form-group">
       <div class="custom-switch pl-0">
@@ -89,3 +89,28 @@
 	  <button type="button" class="btn btn-secondary" data-dismiss="modal">Închide</button>
 	</div>
 <% end %>
+
+<script>
+  // If All day, automatically hide the end field
+  if ($('#event_all_day').is(':checked')) {
+    $('#end_date_form_group').hide()
+  }
+
+  // Puts the contenteditable title into a hidden field to be passed into the db
+  $('form#edit_event_form').submit(() => {
+    let titleHiddenField = document.querySelector('#title-hidden-field')
+    let modalTitle = document.querySelector('#modalTitle')
+    titleHiddenField.value = modalTitle.textContent
+    return true;
+  });
+
+  // Hide end date if all day
+  $('#event_all_day').change(() => {
+    if ( $('#event_all_day').is(':checked') ) {
+      $('#end_date_form_group').hide('500')
+    } else {
+      $('#end_date_field').val("")
+      $('#end_date_form_group').show('500')
+    }
+  })
+</script>

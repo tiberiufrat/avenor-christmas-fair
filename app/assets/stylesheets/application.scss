@@ -30,6 +30,10 @@ $fa-font-path: '@nguyenthanh1995/fontawesomepro/webfonts';
 @import '@nguyenthanh1995/fontawesomepro/scss/duotone';
 @import '@nguyenthanh1995/fontawesomepro/scss/v4-shims';
 
+.main-content {
+  padding-bottom: 30px;
+}
+
 .svg-inline--fa {
   margin-right: 5px;
   margin-left: 5px;

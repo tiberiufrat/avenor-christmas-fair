@@ -19,9 +19,12 @@ require("bootstrap")
 require("jquery.nicescroll")
 
 // require("@nguyenthanh1995/fontawesomepro/js/all") // Transformă iconițele în fișiere .svg
-require("@fullcalendar/core")
-require("@fullcalendar/daygrid")
-require("@fullcalendar/timeline")
+// require("@fullcalendar/core")
+// require("@fullcalendar/daygrid")
+// require("@fullcalendar/timeline")
+import swal from 'sweetalert';
+import moment from 'moment';
+import './sweet-alert-confirm'
 
 require("select2")
 require("cleave.js")

@@ -20,7 +20,7 @@
         </div>
       </div>
       <div class="card-body" data-controller="infinite-page">
-        
+
         <%= search_form_for @search, remote: true, data: { controller: 'turbolinks-form' }, html: { class: 'form-row' } do |f| %>
           <div class="form-group col-sm-10">
             <%= f.text_field :title_cont, class: 'form-control m-input m-input--solid', placeholder: 'Caută după denumire...' %>
@@ -29,7 +29,7 @@
             <%= f.button icon('fas fa-search', 'Caută'), name: nil, class: 'btn btn-icon icon-left btn-primary' %>
           </div>
         <% end %>
-        
+
         <div class="table-responsive">
           <table class="table table-striped table-md">
             <thead>
@@ -40,18 +40,18 @@
                 <th><%= sort_link_turbo(@search, :end) %></th>
                 <th><%= sort_link_turbo(@search, :all_day) %></th>
                 <th><%= sort_link_turbo(@search, :admin) %></th>
-                <th>Actions</th>
+                <th>Acțiuni</th>
               </tr>
             </thead>
             <tbody data-target="infinite-page.container">
               <% @events.each do |event| %>
                 <tr data-target="infinite-page.item">
                   <td><%= link_to event.title, event, class: "badge badge-light" %></td>
-                  <td><%= event.color %></td>
-                  <td><%= l(event.start) %></td>
-                  <td><%= l(event.end) %></td>
-                  <td><%= t(event.all_day) %></td>
-                  <td><%= event.admin %></td>
+                  <td><span class="colorinput-color" style="background-color: <%= event.color %>"></span></td>
+                  <td><%= event.start_datetime %></td>
+                  <td><%= event.end_datetime %></td>
+                  <td><%= event.all_day ? '<i class="fas fa-check-circle text-success" style="font-size: 18px"></i>'.html_safe : '<i class="fas fa-times-circle" style="font-size: 18px"></i>'.html_safe %></td>
+                  <td><%= event.admin.name %></td>
                   <td>
                     <%= link_to icon('fas fa-eye'), event, title: 'Show it', class: 'btn btn-icon btn-sm btn-info mr-1' %>
                     <%= link_to icon('fas fa-edit'), edit_event_path(event), title: 'Edit it', class: 'btn btn-icon btn-sm btn-warning mr-1' %>

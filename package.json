@@ -31,14 +31,23 @@
     "izitoast": "^1.4.0",
     "jquery": "^3.5.1",
     "jquery.nicescroll": "^3.7.4",
+    "moment": "^2.29.1",
+    "moment-timezone": "^0.5.31",
+    "patch-package": "^6.2.2",
     "popper.js": "^1.16.1",
+    "postinstall-postinstall": "^2.1.0",
+    "rrule": "^2.6.6",
     "select2": "^4.0.7-rc.0",
     "stimulus": "^1.1.1",
+    "sweetalert": "^2.1.2",
     "turbolinks": "^5.2.0",
     "waypoints": "^4.0.1"
   },
   "version": "0.1.0",
   "devDependencies": {
     "webpack-dev-server": "^3.11.0"
+  },
+  "scripts": {
+    "postinstall": "patch-package"
   }
 }
