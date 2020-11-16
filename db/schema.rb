@@ -72,9 +72,10 @@ ActiveRecord::Schema.define(version: 2020_11_15_155416) do
   create_table "notifications", force: :cascade do |t|
     t.integer "admin_id", null: false
     t.string "text"
-    t.string "color"
-    t.string "icon"
+    t.string "color", default: "primary"
+    t.string "icon", default: "bell"
     t.string "link"
+    t.boolean "read", default: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["admin_id"], name: "index_notifications_on_admin_id"

@@ -47,12 +47,28 @@ class NotificationsController < ApplicationController
     end
   end
 
+  def delete_admin_notifications
+    current_admin.notifications.destroy_all
+    respond_to do |format|
+      format.html { redirect_to root_url, notice: 'Notifications were successfully destroyed.' }
+      format.js
+    end
+  end
+
+  def read_notifications
+    current_admin.notifications.update_all(read: true)
+    respond_to do |format|
+      format.html { redirect_to root_url, notice: "Notifications were successfully read."}
+      format.js
+    end
+  end
+
   private
     def set_notification
       @notification = Notification.find(params[:id])
     end
 
     def notification_params
-      params.require(:notification).permit(:admin_id, :text, :color, :icon, :link)
+      params.require(:notification).permit(:admin_id, :text, :color, :icon, :link, :read)
     end
 end
