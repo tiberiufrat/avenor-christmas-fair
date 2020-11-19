@@ -54,5 +54,29 @@
       </div>
     </div>
 
+    <script>
+      $('.timeago').timeago()
+
+      function markNotificationsAsRead() {
+        if ( !$('.dropdown-menu').hasClass('show') ) {
+          document.querySelectorAll('.dropdown-item').forEach(item => {
+            item.classList.remove('dropdown-item-unread')        
+          })
+          document.querySelector('#notification-toggle').classList.remove('beep')
+        }
+      }
+
+      $('#notification-toggle').click(() => {
+        $.ajax({
+          url: '/read_notifications',
+          type: 'get',
+          success: () => {
+            window.addEventListener('click', markNotificationsAsRead)
+            document.querySelector('#notification-toggle').addEventListener('click', markNotificationsAsRead)
+          },
+        })
+      })
+    </script>
+
   </body>
 </html>

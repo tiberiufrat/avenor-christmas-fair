@@ -1,6 +1,10 @@
 require 'sidekiq/web'
 
 Rails.application.routes.draw do
+  resources :notifications
+  get '/delete_admin_notifications', to: 'notifications#delete_admin_notifications', as: 'delete_admin_notifications'
+  get '/read_notifications', to: 'notifications#read_notifications', as: 'read_notifications'
+  get '/profile', to: 'profile#index', as: 'profile'
   resources :events
   resources :volunteers
   resources :stands

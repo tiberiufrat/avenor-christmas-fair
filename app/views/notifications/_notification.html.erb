@@ -1,0 +1,9 @@
+<a href="<%= notification.link %>" class="dropdown-item <%= "dropdown-item-unread" unless notification.read %>">
+    <div class="dropdown-item-icon bg-<%= notification.color %> text-white">
+        <i class="fas fa-<%= notification.icon %>"></i>
+    </div>
+    <div class="dropdown-item-desc">
+        <%= notification.text %>
+        <div class="time text-primary"><%= timeago(notification.created_at) %></div>
+    </div>
+</a>

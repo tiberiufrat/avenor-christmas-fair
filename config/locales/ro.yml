@@ -161,9 +161,9 @@ ro:
     format: "%{attribute} %{message}"
     messages:
       accepted: trebuie dat acceptul
-      blank: nu poate fi necompletat
+      blank: nu poate rămâne necompletat(ă)
       confirmation: nu este confirmat
-      empty: nu poate fi necompletat
+      empty: nu poate rămâne necompletat(ă)
       equal_to: trebuie să fie egal cu %{count}
       even: trebuie să fie impar
       exclusion: este rezervat
@@ -176,7 +176,7 @@ ro:
       not_a_number: nu este un număr
       not_an_integer: trebuie să fie un mumăr întreg
       odd: trebuie să fie par
-      taken: este deja folosit
+      taken: este deja folosit(ă)
       too_long: este prea lung(ă) (se pot folosi maximum %{count} caractere)
       too_short: este prea scurt(ă) (minimum %{count} caractere)
       wrong_length: nu are lungimea corectă (trebuie să aibă %{count} caractere)

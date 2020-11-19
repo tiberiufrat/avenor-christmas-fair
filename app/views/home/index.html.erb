@@ -9,7 +9,8 @@
         <h2>Bine ai venit</h2>
         <p class="lead">Autentifică-te acum pentru a avea acces la panoul de control.</p>
         <div class="mt-4">
-          <%= link_to(icon('fas fa-sign-in-alt', 'Autentificare'), new_admin_session_path, class: "btn btn-outline-white btn-lg btn-icon icon-left") %>
+          <%= link_to(icon('fas fa-sign-in', ' Autentificare'), new_admin_session_path, class: "btn btn-outline-white btn-lg btn-icon icon-left") %>
+          <%= link_to(icon('fas fa-user-plus', ' Înregistrare'), new_admin_registration_path, class: "btn btn-outline-white btn-lg btn-icon icon-left") %>
         </div>
       </div>
     </div>
@@ -20,7 +21,8 @@
         <h2>Bine ai venit, <%= current_admin.name %></h2>
         <p class="lead">Accesează resursele din bara laterală sau efectuează o căutare.</p>
         <div class="mt-4">
-          <%= link_to(icon('fas fa-user', ' Modificare detalii cont'), edit_admin_registration_path, class: "btn btn-outline-white btn-lg btn-icon icon-left") %>
+          <%= link_to(icon('fas fa-user-circle', ' Vezi contul tău'), profile_path, class: "btn btn-outline-white btn-lg btn-icon icon-left") %>
+          <%= link_to(icon('fas fa-user-edit', ' Modifică detaliile contului'), edit_admin_registration_path, class: "btn btn-outline-white btn-lg btn-icon icon-left") %>
         </div>
       </div>
     </div>

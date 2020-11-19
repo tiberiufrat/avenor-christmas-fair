@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_11_08_182835) do
+ActiveRecord::Schema.define(version: 2020_11_15_155416) do
 
   create_table "admins", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -69,6 +69,18 @@ ActiveRecord::Schema.define(version: 2020_11_08_182835) do
     t.index ["volunteer_id"], name: "index_jobs_volunteers_on_volunteer_id"
   end
 
+  create_table "notifications", force: :cascade do |t|
+    t.integer "admin_id", null: false
+    t.string "text"
+    t.string "color", default: "primary"
+    t.string "icon", default: "bell"
+    t.string "link"
+    t.boolean "read", default: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["admin_id"], name: "index_notifications_on_admin_id"
+  end
+
   create_table "stands", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", precision: 6, null: false
@@ -104,6 +116,7 @@ ActiveRecord::Schema.define(version: 2020_11_08_182835) do
   end
 
   add_foreign_key "events", "admins"
+  add_foreign_key "notifications", "admins"
   add_foreign_key "students", "grades"
   add_foreign_key "volunteers", "grades"
 end

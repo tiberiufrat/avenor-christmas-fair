@@ -136,62 +136,39 @@
       </div>
     </li>
     <!-- Notifications -->
-    <li class="dropdown dropdown-list-toggle"><a href="#" data-toggle="dropdown" class="nav-link notification-toggle nav-link-lg beep"><i class="fas fa-bell"></i></a>
+    <li class="dropdown dropdown-list-toggle">
+      <a href="#" data-toggle="dropdown" class="nav-link notification-toggle nav-link-lg <%= "beep" if admin_signed_in? && !current_admin.notifications.unread.empty? %>" id="notification-toggle"><i class="fas fa-bell"></i></a>
       <div class="dropdown-menu dropdown-list dropdown-menu-right">
-        <div class="dropdown-header">Notifications
+        <div class="dropdown-header">Notificări
           <div class="float-right">
-            <a href="#">Mark All As Read</a>
+            <%= link_to("Șterge tot", delete_admin_notifications_path, class: 'text-danger', id: 'delete-notifications-button', remote: true) if admin_signed_in? && !current_admin.notifications.empty? %>
           </div>
         </div>
-        <div class="dropdown-list-content dropdown-list-icons">
-          <a href="#" class="dropdown-item dropdown-item-unread">
-            <div class="dropdown-item-icon bg-primary text-white">
-              <i class="fas fa-code"></i>
+        <div class="dropdown-list-content dropdown-list-icons" id="notifications">
+          <% if admin_signed_in? %>
+            <% if current_admin.notifications.empty? %>
+              <div class="empty-state h-100" style="padding: 10%">
+                <div class="empty-state-icon">
+                  <i class="fas fa-question"></i>
+                </div>
+                <h2>Nu ai nicio notificare</h2>
+                <a class="mt-4 bb" style="cursor: pointer" onclick="swal('Notificări', 'Primești notificări atunci când se întâmplă evenimente importante. Le poți accesa de pe orice pagină din meniul „Notificări”, în colțul din dreapta-sus.')">Ajutor</a>
+              </div>
+            <% else %>
+              <%= render current_admin.notifications.order(updated_at: :desc) %>
+            <% end %>
+          <% else %>
+            <div class="empty-state h-100" style="padding: 10%">
+              <div class="empty-state-icon">
+                <i class="fas fa-question"></i>
+              </div>
+              <h2>Autentifică-te pentru a-ți vedea notificările</h2>
+              <a class="mt-4 bb" style="cursor: pointer" onclick="swal({ title: `Notificări`, text: `Îți poți vedea notificările doar după ce te autentifici. Le poți accesa de pe orice pagină din meniul „Notificări”, în colțul din dreapta-sus.`, buttons: ['Anulează', 'Autentifică-te acum'] }).then((redirect) => { if(redirect) Turbolinks.visit(`<%= new_admin_session_path %>`) })">Ajutor</a>
             </div>
-            <div class="dropdown-item-desc">
-              Template update is available now!
-              <div class="time text-primary">2 Min Ago</div>
-            </div>
-          </a>
-          <a href="#" class="dropdown-item">
-            <div class="dropdown-item-icon bg-info text-white">
-              <i class="fas fa-user"></i>
-            </div>
-            <div class="dropdown-item-desc">
-              <b>You</b> and <b>Dedik Sugiharto</b> are now friends
-              <div class="time">10 Hours Ago</div>
-            </div>
-          </a>
-          <a href="#" class="dropdown-item">
-            <div class="dropdown-item-icon bg-success text-white">
-              <i class="fas fa-check"></i>
-            </div>
-            <div class="dropdown-item-desc">
-              <b>Kusnaedi</b> has moved task <b>Fix bug header</b> to <b>Done</b>
-              <div class="time">12 Hours Ago</div>
-            </div>
-          </a>
-          <a href="#" class="dropdown-item">
-            <div class="dropdown-item-icon bg-danger text-white">
-              <i class="fas fa-exclamation-triangle"></i>
-            </div>
-            <div class="dropdown-item-desc">
-              Low disk space. Let's clean it!
-              <div class="time">17 Hours Ago</div>
-            </div>
-          </a>
-          <a href="#" class="dropdown-item">
-            <div class="dropdown-item-icon bg-info text-white">
-              <i class="fas fa-bell"></i>
-            </div>
-            <div class="dropdown-item-desc">
-              Welcome to Stisla template!
-              <div class="time">Yesterday</div>
-            </div>
-          </a>
+          <% end %>
         </div>
         <div class="dropdown-footer text-center">
-          <a href="#">View All <i class="fas fa-chevron-right"></i></a>
+          <%= link_to 'Vezi toate notificările<i class="fas fa-chevron-right"></i>'.html_safe, profile_path %>
         </div>
       </div>
     </li>
@@ -212,15 +189,13 @@
         <!-- Dropdown menu -->
         <div class="dropdown-menu dropdown-menu-right">
           <div class="dropdown-title">Stare: <span class="text-success">Conectat</span></div>
-          <%= link_to(icon("far fa-user", " Profil"), edit_registration_path(current_admin), class: "dropdown-item has-icon") %>
+          <%= link_to(icon("fas fa-user-circle", " Contul tău"), profile_path, class: "dropdown-item has-icon") %>
+          <%= link_to(icon("fas fa-user-edit", " Modifică contul"), edit_registration_path(current_admin), class: "dropdown-item has-icon") %>
           <a href="#" class="dropdown-item has-icon">
-            <i class="fas fa-bolt"></i> Activități
-          </a>
-          <a href="#" class="dropdown-item has-icon">
-            <i class="fas fa-cog"></i> Setări
+            <i class="fas fa-cog"></i> Configurări
           </a>
           <div class="dropdown-divider"></div>
-          <%= link_to("<i class=\"fas fa-sign-out-alt\"></i> Deautentificare".html_safe, destroy_admin_session_path, method: :delete, class: "dropdown-item has-icon text-danger") %>
+          <%= link_to("<i class=\"fas fa-sign-out\"></i> Deautentificare".html_safe, destroy_admin_session_path, method: :delete, class: "dropdown-item has-icon text-danger") %>
         </div>
       </li>
     <% else %>

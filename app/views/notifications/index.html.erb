@@ -1,0 +1,69 @@
+<section class="section">
+  <div class="section-header d-mobile-none">
+    <h1>Notifications</h1>
+    <div class="section-header-breadcrumb">
+      <div class="breadcrumb-item"><%= link_to 'Panou de control', root_path %></div>
+      <div class="breadcrumb-item">Lista Notifications</div>
+    </div>
+  </div>
+
+  <div class="section-body">
+    <div class="card">
+      <div class="card-header">
+        <h4>Lista Notifications</h4>
+        <div class="card-header-action">
+          <%= link_to icon('fas fa-plus', 'Adaugă Notification'), new_notification_path, class: 'btn btn-icon icon-left btn-primary' %>
+          <%= render 'shared/card_dropdown' do %>
+            <%= link_to icon('fas fa-download', 'Exportă datele'), notifications_path(format: :csv, q: request.params[:q]), class: 'dropdown-item has-icon' %>
+            <%= link_to icon('fas fa-print', 'Tipărește pagina'), 'javascript:window.print()', class: 'dropdown-item has-icon' %>
+          <% end %>
+        </div>
+      </div>
+      <div class="card-body" data-controller="infinite-page">
+        <!--
+        <#= search_form_for @search, remote: true, data: { controller: 'turbolinks-form' }, html: { class: 'form-row' } do |f| #>
+          <div class="form-group col-sm-10">
+            <#= f.text_field :name_cont, class: 'form-control m-input m-input--solid', placeholder: 'Name' #>
+          </div>
+          <div class="form-group col-sm-2 text-right">
+            <#= f.button icon('fas fa-search', 'Caută'), name: nil, class: 'btn btn-icon icon-left btn-primary' #>
+          </div>
+        <# end #>
+        -->
+        <div class="table-responsive">
+          <table class="table table-striped table-md">
+            <thead>
+              <tr>
+                <th><%= sort_link_turbo(@search, :admin) %></th>
+                <th><%= sort_link_turbo(@search, :text) %></th>
+                <th><%= sort_link_turbo(@search, :color) %></th>
+                <th><%= sort_link_turbo(@search, :icon) %></th>
+                <th><%= sort_link_turbo(@search, :link) %></th>
+                <th>Acțiuni</th>
+              </tr>
+            </thead>
+            <tbody data-target="infinite-page.container">
+              <% @notifications.each do |notification| %>
+                <tr data-target="infinite-page.item">
+                  <td><%= notification.admin %></td>
+                  <td><%= notification.text %></td>
+                  <td><%= notification.color %></td>
+                  <td><%= notification.icon %></td>
+                  <td><%= notification.link %></td>
+                  <td>
+                    <%= link_to icon('fas fa-eye'), notification, title: 'Vizualizează', class: 'btn btn-icon btn-sm btn-info mr-1' %>
+                    <%= link_to icon('fas fa-edit'), edit_notification_path(notification), title: 'Modifică', class: 'btn btn-icon btn-sm btn-warning mr-1' %>
+                    <%= link_to icon('fas fa-trash'), notification, title: 'Șterge', class: 'btn btn-icon btn-sm btn-danger', method: :delete, data: { confirm: 'Ești sigur că dorești să îl ștergi?', remote: true } %>
+                  </td>
+                </tr>
+              <% end %>
+            </tbody>
+          </table>
+          <%= link_to 'Pagina următoare', notifications_path(page: @page.next_number, q: request.params[:q]), data: { target: 'infinite-page.more' } unless @page.last? %>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<% content_for(:page_title, 'Lista Notifications') %>
