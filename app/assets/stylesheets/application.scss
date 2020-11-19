@@ -39,6 +39,25 @@ $fa-font-path: '@nguyenthanh1995/fontawesomepro/webfonts';
   margin-left: 5px;
 }
 
+i.fas, i.far, i.fad, i.fal {
+  margin-top: 2px !important;
+}
+
+.sidebar-menu .fas,
+.sidebar-menu .far,
+.sidebar-menu .fad,
+.sidebar-menu .fal {
+  margin-top: 4px !important;
+}
+
+.activities .activity .activity-icon {
+  line-height: 44px;
+}
+
+.dropdown-list .dropdown-list-icons .dropdown-item .dropdown-item-icon {
+  line-height: 39px;
+}
+
 a.nav-link svg.svg-inline--fa {
   box-sizing: border-box;
   width: 25px;

@@ -26,7 +26,6 @@ import swal from 'sweetalert';
 import moment from 'moment';
 import './sweet-alert-confirm'
 import './timeago'
-import './other'
 
 require("select2")
 require("cleave.js")
