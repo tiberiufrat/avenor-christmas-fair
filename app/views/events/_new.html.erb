@@ -83,7 +83,9 @@
 	</div>
 
 	<div class="modal-footer">
-	  <%= form.submit class: 'btn btn-primary', id: 'modal-submit' %>
+    <button type="submit" name="commit" value="Creare Eveniment" class="btn btn-primary" id="modal-submit" data-disable-with="Creare Eveniment">
+      <i class="fas fa-calendar-plus"></i> Creare eveniment
+    </button>
 	  <button type="button" class="btn btn-secondary" data-dismiss="modal">Închide</button>
 	</div>
 <% end %>
