@@ -1,24 +1,8 @@
-# README
+# Avenor Christmas Fair Management App
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
-
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+This is a management app for a Christmas fair written in ruby on rails. 
+It is based on the Stisla template. It has many features, like:
+* calendar (implemented with fullCalendar)
+* user accounts and authentication (devise)
+* managing students, products, vendors etc.
+* notifications
